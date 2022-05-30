@@ -6,13 +6,13 @@ local lsp_installer = require "nvim-lsp-installer"
 local servers = {
   sumneko_lua = require "lsp.lua", -- /lua/lsp/lua.lua
   ccls        = require "lsp.cpp", -- /lua/lsp/cpp.lua
-  -- prosemd_lsp = require "lsp.markdown",
-  -- ltex        = require "lsp.ltex",
-  -- jdtls       = require "lsp.jdtls",
-  -- jsonls      = require "lsp.json",
+  prosemd_lsp = require "lsp.markdown",
+  ltex        = require "lsp.ltex",
+  jdtls       = require "lsp.jdtls",
+  jsonls      = require "lsp.json",
 }
 
--- 自动安装 LanguageServers
+-- 自动安装 Language Servers
 for name, _ in pairs(servers) do
   local server_is_found, server = lsp_installer.get_server(name)
   if server_is_found then
@@ -24,17 +24,15 @@ for name, _ in pairs(servers) do
 end
 
 lsp_installer.on_server_ready(function(server)
-  local opts = servers[server.name]
-  if opts then
-    opts.on_attach = function(_, bufnr)
-      local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-      -- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-      -- 绑定快捷键
-      require('keybindings').maplsp(buf_set_keymap)
-    end
-    opts.flags = {
-      debounce_text_changes = 150,
-    }
-    server:setup(opts)
+  local config = servers[server.name]
+  if config == nil then
+    return
+  end
+  if type(config) == "table" and config.on_setup then
+    -- 自定义初始化配置文件必须实现on_setup 方法
+    config.on_setup(server)
+  else
+    -- 使用默认参数
+    server:setup({})
   end
 end)
