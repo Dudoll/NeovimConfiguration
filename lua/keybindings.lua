@@ -47,6 +47,10 @@ map("n", "<leader>fb", ":lua require('telescope.builtin').buffers()<cr>", opt)
 map("n", "<leader>fh", ":lua require('telescope.builtin').help_tags()<cr>", opt)
 
 
+-- vimtex
+map("n", "\\ll", ":VimtexCompile<cr>", {noremap=true})
+map("n", "\\lv", ":VimtexView<cr>", {noremap=true})
+
 -- lsp 回调函数快捷键设置
 local pluginKeys = {}
 
