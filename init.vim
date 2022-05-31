@@ -27,8 +27,8 @@ lua require("lsp/ui")
 
 
 call plug#begin()
-  Plug 'lervag/vimtex'
-  Plug 'vim-latex/vim-latex'
+Plug 'lervag/vimtex',{'for':'tex'}
+Plug 'vim-latex/vim-latex',{'for':'tex'}
 call plug#end()
 
 
