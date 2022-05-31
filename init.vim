@@ -12,7 +12,7 @@ set background=dark
 colorscheme gruvbox
 
 " plugins
-lua require('plugin-config/nvim-tree')
+" lua require('plugin-config/nvim-tree')
 lua require('plugin-config/bufferline')
 lua require('plugin-config/nvim-treesitter')
 lua require('plugin-config/lualine')
