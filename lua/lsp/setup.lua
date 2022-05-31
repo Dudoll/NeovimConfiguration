@@ -10,6 +10,7 @@ local servers = {
   ltex        = require "lsp.ltex",
   jdtls       = require "lsp.jdtls",
   jsonls      = require "lsp.json",
+  grammarly   = require "lsp.grammarly"
 }
 
 -- 自动安装 Language Servers
