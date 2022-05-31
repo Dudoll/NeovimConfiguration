@@ -1,5 +1,7 @@
 filetype plugin indent on
 syntax enable
+
+
 call plug#begin()
 Plug 'lervag/vimtex', {'for':'tex'}
 Plug 'vim-latex/vim-latex', {'for':'tex'}

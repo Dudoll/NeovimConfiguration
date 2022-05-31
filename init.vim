@@ -30,4 +30,3 @@ lua require('lsp/setup')
 lua require('lsp/nvim-cmp')
 lua require("lsp/ui")
 
-
