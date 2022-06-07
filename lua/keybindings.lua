@@ -20,10 +20,10 @@ map("n", "<leader>sc", "<c-w>c", opt)
 map("n", "<leader>so", "<c-w>o", opt)
 
 -- 窗口之间跳转
-map("n", "<A-h>", "<C-w>h", opt)
-map("n", "<A-j>", "<C-w>j", opt)
-map("n", "<A-k>", "<C-w>k", opt)
-map("n", "<A-l>", "<C-w>l", opt)
+map("n", "<c-h>", "<C-w>h", opt)
+map("n", "<c-j>", "<C-w>j", opt)
+map("n", "<c-k>", "<C-w>k", opt)
+map("n", "<c-l>", "<C-w>l", opt)
 
 -- 窗口比例控制
 map("n", "<leader>s>", ":vertical resize +20<CR>", opt)
@@ -37,8 +37,8 @@ map("n", "<leader>sk", ":resize -10<CR>",opt)
 map("n", "<A-m>", ":NvimTreeToggle<CR>", opt)
 
 -- bufferline Plugin
-map("n", "<c-h>", "<esc>:BufferLineCyclePrev<cr>", opt)
-map("n", "<c-l>", "<esc>:BufferLineCycleNext<cr>", opt)
+map("n", "<a-h>", "<esc>:BufferLineCyclePrev<cr>", opt)
+map("n", "<a-l>", "<esc>:BufferLineCycleNext<cr>", opt)
 
 
 -- telescope Plugin
