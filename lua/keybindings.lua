@@ -33,24 +33,35 @@ map("n", "<leader>sj", ":resize +10<CR>",opt)
 map("n", "<leader>sk", ":resize -10<CR>",opt)
 
 
--- Nvimtree Plugin
+-- Nvimtree Plugin 左侧的目录树
 map("n", "<A-m>", ":NvimTreeToggle<CR>", opt)
 
--- bufferline Plugin
-map("n", "<a-h>", "<esc>:BufferLineCyclePrev<cr>", opt)
+-- bufferline Plugin 标签栏
+map("n", "<a-h>", "<esc>:BufferLineCyclePrev<cr>", {silent=true})
 map("n", "<a-l>", "<esc>:BufferLineCycleNext<cr>", opt)
 
 
--- telescope Plugin
+-- telescope Plugin 文件搜索
 map("n", "<leader>ff", ":lua require('telescope.builtin').find_files()<cr>", opt)
 map("n", "<leader>fg", ":lua require('telescope.builtin').live_grep()<cr>", opt)
 map("n", "<leader>fb", ":lua require('telescope.builtin').buffers()<cr>", opt)
 map("n", "<leader>fh", ":lua require('telescope.builtin').help_tags()<cr>", opt)
 
-
 -- vimtex
 map("n", "\\ll", ":VimtexCompile<cr>", {noremap=true})
 map("n", "\\lv", ":VimtexView<cr>", {noremap=true})
+
+-- hop.vim (快速跳转)
+map('n', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<cr>", opt)
+map('n', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<cr>", opt)
+map('o', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, inclusive_jump = true })<cr>", opt)
+map('o', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, inclusive_jump = true })<cr>", opt)
+map('', 't', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<cr>", opt)
+map('', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<cr>", opt)
+map('n', '<leader>e', "<cmd> lua require'hop'.hint_words({ hint_position = require'hop.hint'.HintPosition.END })<cr>", opt)
+map('v', '<leader>e', "<cmd> lua require'hop'.hint_words({ hint_position = require'hop.hint'.HintPosition.END })<cr>", opt)
+map('o', '<leader>e', "<cmd> lua require'hop'.hint_words({ hint_position = require'hop.hint'.HintPosition.END, inclusive_jump = true })<cr>", opt)
+
 
 -- lsp 回调函数快捷键设置
 local pluginKeys = {}

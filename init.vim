@@ -23,6 +23,7 @@ lua require('plugin-config/toggleterm')
 lua require('plugin-config/gitsigns')
 lua require('plugin-config/autopair')
 lua require('plugin-config/Comment')
+lua require('plugin-config/hop')
 
 "   lsp
 lua require('lsp/setup')
