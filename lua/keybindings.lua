@@ -11,7 +11,7 @@ map("i", "<leader>c", "<esc>ciw", opt)
 map("i", "<leader>d", "<esc>diw", opt)
 map("i", "<leader>a", "<esc>la", opt)
 map("i", "<leader>s", "<esc>S", opt)
-map("i", "jj", "<esc>", opt)
+map("i", "kj", "<esc>", opt)
 
 -- 分屏
 map("n", "<leader>sv", ":vsp<cr>", opt)
