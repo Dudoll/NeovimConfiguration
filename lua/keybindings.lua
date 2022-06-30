@@ -79,12 +79,12 @@ pluginKeys.comment = {
   -- Visual 模式
   opleader = {
     line = "gc",
-    bock = "gb",
+    block = "gb",
   },
 }
 -- ctrl + /
 map("n", "<C-_>", "gcc", { noremap = false })
-map("v", "<C-_>", "gcc", { noremap = false })
+map("v", "<C-_>", "gbc", { noremap = false })
 
 -- toggleterm
 -- 自定义 toggleterm 3个不同类型的命令行窗口
