@@ -12,6 +12,8 @@ map("i", "<leader>d", "<esc>diw", opt)
 map("i", "<leader>a", "<esc>la", opt)
 map("i", "<leader>s", "<esc>S", opt)
 map("i", "kj", "<esc>", opt)
+-- neq => '!='
+map("i", "<leader>neq", "!=", opt)
 
 -- 分屏
 map("n", "<leader>sv", ":vsp<cr>", opt)
