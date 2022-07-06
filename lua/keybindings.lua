@@ -12,6 +12,7 @@ map("i", "<leader>d", "<esc>diw", opt)
 map("i", "<leader>a", "<esc>la", opt)
 map("i", "<leader>s", "<esc>S", opt)
 map("i", "kj", "<esc>", opt)
+map("n", "<c-y>", "gg/class<cr>1000yy", opt)
 -- neq => '!='
 map("i", "<leader>neq", "!=", opt)
 
