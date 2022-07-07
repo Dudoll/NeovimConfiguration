@@ -14,7 +14,7 @@ map("i", "<leader>s", "<esc>S", opt)
 map("i", "kj", "<esc>", opt)
 map("n", "<c-y>", "gg/class<cr>1000yy", opt)
 -- neq => '!='
-map("i", "<leader>ne", "!=", opt)
+map("i", "<leader>e", "!=", opt)
 map("i", "<leader>r", "->", opt)
 
 -- 分屏
