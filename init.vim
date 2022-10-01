@@ -24,6 +24,7 @@ lua require('plugin-config/gitsigns')
 lua require('plugin-config/autopair')
 lua require('plugin-config/Comment')
 lua require('plugin-config/hop')
+lua require('plugin-config/which-key')
 
 "   lsp
 lua require('lsp/setup')

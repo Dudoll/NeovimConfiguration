@@ -74,6 +74,35 @@ return require('packer').startup({
             end
         }
 
+        -- which-key
+        use {
+          "folke/which-key.nvim",
+          -- config = function()
+          -- end
+        }
+
+        -- 浮动terminal
+        use {"akinsho/toggleterm.nvim", tag = 'v1.*', config = function()
+            require("toggleterm").setup()
+            end
+        }
+
+        use {
+            'lewis6991/gitsigns.nvim',
+            -- tag = 'release' -- To use the latest release
+        }
+
+        -- surround
+        use({
+            "kylechui/nvim-surround",
+            tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+            config = function()
+                require("nvim-surround").setup({
+                    -- Configuration here, or leave empty to use defaults
+                })
+            end
+        })
+
         -- -----------------------lsp------------------------
         --lsp config plugin
         use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}
@@ -103,16 +132,6 @@ return require('packer').startup({
         -- Rust 增强
         use("simrat39/rust-tools.nvim")
 
-        -- 浮动terminal
-        use {"akinsho/toggleterm.nvim", tag = 'v1.*', config = function()
-            require("toggleterm").setup()
-            end
-        }
-
-        use {
-            'lewis6991/gitsigns.nvim',
-            -- tag = 'release' -- To use the latest release
-        }
 
     end,
 }) 
