@@ -74,7 +74,7 @@ return require('packer').startup({
             end
         }
 
-        -----------------------lsp------------------------
+        -- -----------------------lsp------------------------
         --lsp config plugin
         use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}
 
@@ -103,11 +103,11 @@ return require('packer').startup({
         -- Rust 增强
         use("simrat39/rust-tools.nvim")
 
-        -- 
         -- 浮动terminal
         use {"akinsho/toggleterm.nvim", tag = 'v1.*', config = function()
             require("toggleterm").setup()
-        end}
+            end
+        }
 
         use {
             'lewis6991/gitsigns.nvim',

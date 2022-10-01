@@ -8,7 +8,7 @@ local servers = {
     prosemd_lsp =   require "lsp.markdown",
     ltex        = require "lsp.ltex",
     -- jdtls       = require "lsp.jdtls",
-    jsonls      =   require "lsp.json",
+    -- jsonls      =   require "lsp.json",
     -- grammarly   =   require "lsp.grammarly",
     -- clangd      =   require "lsp.cpp",
 

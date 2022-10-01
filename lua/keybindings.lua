@@ -44,6 +44,7 @@ map("n", "<A-m>", ":NvimTreeToggle<CR>", opt)
 -- bufferline Plugin 标签栏
 map("n", "<c-h>", "<esc>:BufferLineCyclePrev<cr>", {silent=true})
 map("n", "<c-l>", "<esc>:BufferLineCycleNext<cr>", opt)
+map("n", "<leader>b", "<esc>:BufferLinePickClose<cr>", {silent=true})
 
 
 -- telescope Plugin 文件搜索
