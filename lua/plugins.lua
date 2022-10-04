@@ -103,6 +103,13 @@ return require('packer').startup({
             end
         })
 
+        -- inlay hints
+        use {
+            "lvimuser/lsp-inlayhints.nvim"
+        }
+        --
+        --lvimuser/lsp-inlayhints.nvim
+
         -- -----------------------lsp------------------------
         --lsp config plugin
         use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}

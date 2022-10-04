@@ -12,7 +12,7 @@ map("i", "<leader>d", "<esc>diw", opt)
 map("i", "<leader>a", "<esc>la", opt)
 map("i", "<leader>s", "<esc>S", opt)
 map("i", "kj", "<esc>", opt)
-map("n", "<c-y>", "gg/class<cr>1000yy", opt)
+map("n", "<c-y>", "mZgg/class<cr>1000yy'Z:delmarks Z<cr>", opt)
 -- neq => '!='
 map("i", "<leader>e", "!=", opt)
 map("i", "<leader>r", "->", opt)
@@ -99,10 +99,10 @@ map("v", "<C-_>", "gbc", { noremap = false })
 -- 特殊lazygit 窗口，需要安装lazygit
 -- <leader>tg lazygit
 pluginKeys.mapToggleTerm = function(toggleterm)
-  vim.keymap.set({ "n", "t" }, "<leader>ta", toggleterm.toggleA)
-  vim.keymap.set({ "n", "t" }, "<leader>tb", toggleterm.toggleB)
-  vim.keymap.set({ "n", "t" }, "<leader>tc", toggleterm.toggleC)
-  vim.keymap.set({ "n", "t" }, "<leader>tg", toggleterm.toggleG)
+    vim.keymap.set({ "n", "t" }, "<leader>ta", toggleterm.toggleA)
+    vim.keymap.set({ "n", "t" }, "<leader>tb", toggleterm.toggleB)
+    vim.keymap.set({ "n", "t" }, "<leader>tc", toggleterm.toggleC)
+    vim.keymap.set({ "n", "t" }, "<leader>tg", toggleterm.toggleG)
 end
 
 
