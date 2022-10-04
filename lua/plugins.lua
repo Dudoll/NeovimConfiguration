@@ -138,6 +138,8 @@ return require('packer').startup({
         use("b0o/schemastore.nvim")
         -- Rust 增强
         use("simrat39/rust-tools.nvim")
+        -- 输入时提示函数参数
+        use("ray-x/lsp_signature.nvim")
 
 
     end,
