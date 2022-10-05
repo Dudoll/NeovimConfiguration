@@ -4,6 +4,7 @@ let &packpath=&runtimepath
 source ~/.config/nvim/.vimrc
 
 set nu
+
 lua require('keybindings')
 lua require('basic')
 lua require('plugins')
@@ -35,3 +36,4 @@ lua require('lsp/setup')
 lua require('lsp/nvim-cmp')
 lua require("lsp/ui")
 
+set laststatus=0
