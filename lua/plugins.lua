@@ -87,28 +87,19 @@ return require('packer').startup({
             end
         }
 
-        use {
-            'lewis6991/gitsigns.nvim',
-            -- tag = 'release' -- To use the latest release
-        }
+        use 'lewis6991/gitsigns.nvim'
 
         -- surround
         use({
             "kylechui/nvim-surround",
             tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-            config = function()
-                require("nvim-surround").setup({
-                    -- Configuration here, or leave empty to use defaults
-                })
-            end
         })
 
         -- inlay hints
-        use {
-            "lvimuser/lsp-inlayhints.nvim"
-        }
-        --
-        --lvimuser/lsp-inlayhints.nvim
+        use "lvimuser/lsp-inlayhints.nvim"
+
+        -- marks
+        use "chentoast/marks.nvim"
 
         -- -----------------------lsp------------------------
         --lsp config plugin

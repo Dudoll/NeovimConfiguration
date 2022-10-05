@@ -25,6 +25,9 @@ lua require('plugin-config/autopair')
 lua require('plugin-config/Comment')
 lua require('plugin-config/hop')
 lua require('plugin-config/which-key')
+lua require('plugin-config/lsp-signature')
+lua require('plugin-config/surround')
+lua require('plugin-config/marks')
 
 "   lsp
 lua require('lsp/setup')
