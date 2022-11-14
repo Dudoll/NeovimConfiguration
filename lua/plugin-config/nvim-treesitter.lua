@@ -2,7 +2,7 @@ require("nvim-treesitter.install").prefer_git = true
 require'nvim-treesitter.configs'.setup {
   -- 安装 language parser
   -- :TSInstallInfo 命令查看支持的语言
-  ensure_installed = {"vim", "lua", "tsx", "c", "cpp", "python", "json", "java", "markdown"},
+  ensure_installed = {"vim", "lua", "c", "cpp", "python", "json", "java", "markdown"},
   -- 启用代码高亮功能
   highlight = {
     enable = true,
