@@ -1,3 +1,6 @@
+-- package.path = package.path .. ';~/.inifile/*'
+-- local inifile = require('inifile')
+
 -- utf8
 vim.g.encoding = "UTF-8"
 vim.o.fileencoding = "utf-8"
@@ -81,3 +84,4 @@ vim.o.showtabline = 2
 vim.o.showmode = false
 -- 配置剪切板
 vim.opt.clipboard = "unnamedplus"
+

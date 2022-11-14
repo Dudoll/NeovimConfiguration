@@ -4,6 +4,20 @@ vim.g.maplocalleader = ","
 local map = vim.api.nvim_set_keymap
 local opt = {noremap = true, silent = true}
 
+-- background
+local function toggle_background()
+    if (background == "light")
+    then
+        background = "dark"
+    else
+        background = "light"
+    end
+    vim.go.background = background
+    ini_conf['background']['name'] = background
+    inifile.save(ini_conf_path, ini_conf)
+end
+vim.keymap.set("n", "<leader>q", toggle_background)
+
 map("n", "<C-u>", "9k", opt)
 map("n", "<C-d>", "9j", opt)
 map("n", "<leader>r", ":set rnu!<cr>", opt)
