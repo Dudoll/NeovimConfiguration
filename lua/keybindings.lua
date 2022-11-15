@@ -6,15 +6,15 @@ local opt = {noremap = true, silent = true}
 
 -- background
 local function toggle_background()
-    if (background == "light")
+    if (vim.go.background == "light")
     then
-        background = "dark"
+        vim.go.background = "dark"
     else
-        background = "light"
+        vim.go.background = "light"
     end
-    vim.go.background = background
-    ini_conf['background']['name'] = background
-    inifile.save(ini_conf_path, ini_conf)
+    -- vim.go.background = background
+    -- ini_conf['global']['background'] = background
+    -- inifile.save(ini_conf_path, ini_conf)
 end
 vim.keymap.set("n", "<leader>q", toggle_background)
 

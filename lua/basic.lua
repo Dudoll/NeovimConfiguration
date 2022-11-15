@@ -1,5 +1,22 @@
--- package.path = package.path .. ';~/.inifile/*'
--- local inifile = require('inifile')
+inifile = require('inifile')
+ini_conf_path = [[/home/joel/.config/nvim/lua/conf.ini]]
+ini_conf = inifile.parse(ini_conf_path)
+
+-- 设定自动保存函数
+function save_iniconf()
+    ini_conf['global']['background'] = vim.go.background
+    inifile.save(ini_conf_path, ini_conf)
+end
+
+-- 在nvim退出时, 自动保存ini_conf配置
+vim.api.nvim_create_augroup("exitCheck", {clear = true})
+vim.api.nvim_create_autocmd("VimLeavePre", {
+    group = "exitCheck",
+    command = "lua save_iniconf()",
+})
+
+-- background
+vim.go.background = ini_conf['global']['background']
 
 -- utf8
 vim.g.encoding = "UTF-8"
@@ -16,7 +33,7 @@ vim.wo.cursorline = true
 vim.wo.signcolumn = "yes"
 -- 右侧参考线，超过表示代码太长了，考虑换行
 --vim.wo.colorcolumn = "80"
--- 缩进2个空格等于一个Tab
+-- 缩进4个空格等于一个Tab
 vim.o.tabstop = 4
 vim.bo.tabstop = 4
 vim.o.softtabstop = 4
