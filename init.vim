@@ -9,13 +9,6 @@ lua require('keybindings')
 lua require('basic')
 lua require('plugins')
 
-" set background
-lua inifile = require('inifile')
-lua ini_conf_path = [[/home/joel/.config/nvim/lua/conf.ini]]
-lua ini_conf = inifile.parse(ini_conf_path)
-lua background = ini_conf['background']['name']
-lua vim.go.background = background
-
 colorscheme gruvbox
 
 " plugins
