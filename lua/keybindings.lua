@@ -27,6 +27,8 @@ map("i", "<leader>a", "<esc>la", opt)
 map("i", "<leader>s", "<esc>S", opt)
 map("i", "kj", "<esc>", opt)
 map("n", "<c-y>", "mZgg/class<cr>1000yy'Z:delmarks Z<cr>", opt)
+map("n", "H", "^", opt)
+map("n", "L", "$", opt)
 -- neq => '!='
 map("i", "<leader>e", "!=", opt)
 map("i", "<leader>r", "->", opt)
