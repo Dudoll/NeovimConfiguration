@@ -82,7 +82,7 @@ return require('packer').startup({
         }
 
         -- 浮动terminal
-        use {"akinsho/toggleterm.nvim", tag = 'v1.*', config = function()
+        use {"akinsho/toggleterm.nvim", config = function()
             require("toggleterm").setup()
             end
         }
