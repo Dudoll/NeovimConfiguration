@@ -1,10 +1,10 @@
 inifile = require('inifile')
-ini_conf_path = [[/home/joel/.config/nvim/lua/conf.ini]]
+ini_conf_path = vim.fn.stdpath("config") .. "/lua/conf.ini"
 ini_conf = inifile.parse(ini_conf_path)
 
 -- 设定自动保存函数
 function save_iniconf()
-    if ini_conf['global']['background'] ~= vim.go.backgound then 
+    if ini_conf['global']['background'] ~= vim.go.background then 
         ini_conf['global']['background'] = vim.go.background
         inifile.save(ini_conf_path, ini_conf)
     end
