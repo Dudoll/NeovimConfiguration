@@ -54,7 +54,7 @@ return require('packer').startup({
         use("nvim-telescope/telescope-ui-select.nvim")
 
         -- project manage
-        use ("ahmedkhalf/project.nvim")
+        -- use ("ahmedkhalf/project.nvim")
 
         -- tab缩进
         use "lukas-reineke/indent-blankline.nvim"

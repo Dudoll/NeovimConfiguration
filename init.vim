@@ -12,12 +12,12 @@ lua require('plugins')
 colorscheme gruvbox
 
 " plugins
-" lua require('plugin-config/nvim-tree')
+lua require('plugin-config/nvim-tree')
 lua require('plugin-config/bufferline')
 lua require('plugin-config/nvim-treesitter')
 lua require('plugin-config/lualine')
 lua require('plugin-config/indent-blankline')
-lua require('plugin-config/project')
+" lua require('plugin-config/project')
 lua require('plugin-config/ts-rainbow')
 lua require('plugin-config/toggleterm')
 lua require('plugin-config/gitsigns')
