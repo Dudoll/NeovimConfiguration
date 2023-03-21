@@ -99,8 +99,11 @@ return require('packer').startup({
         use "chentoast/marks.nvim"
 
         -- -----------------------lsp------------------------
-        --lsp config plugin
-        use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}
+        --lsp config plugin, nvim-lsp-installer 不再维护，更换为 mason.nvim
+        -- use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}
+        use({ "williamboman/mason.nvim" })
+        use({ "williamboman/mason-lspconfig.nvim" })
+        use ({'neovim/nvim-lspconfig'})
 
         -- 代码自动补全
         use 'hrsh7th/cmp-nvim-lsp' -- { name = nvim_lsp }
