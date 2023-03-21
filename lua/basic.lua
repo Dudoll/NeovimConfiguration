@@ -4,8 +4,10 @@ ini_conf = inifile.parse(ini_conf_path)
 
 -- 设定自动保存函数
 function save_iniconf()
-    ini_conf['global']['background'] = vim.go.background
-    inifile.save(ini_conf_path, ini_conf)
+    if ini_conf['global']['background'] ~= vim.go.backgound then 
+        ini_conf['global']['background'] = vim.go.background
+        inifile.save(ini_conf_path, ini_conf)
+    end
 end
 
 -- 在nvim退出时, 自动保存ini_conf配置
