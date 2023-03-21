@@ -17,6 +17,7 @@ local function toggle_background()
     -- inifile.save(ini_conf_path, ini_conf)
 end
 vim.keymap.set("n", "<leader>q", toggle_background)
+-- map("n", "<leader>q", toggle_background, opt)
 
 map("n", "<C-u>", "9k", opt)
 map("n", "<C-d>", "9j", opt)
@@ -85,24 +86,25 @@ map('v', '<leader>e', "<cmd> lua require'hop'.hint_words({ hint_position = requi
 map('o', '<leader>e', "<cmd> lua require'hop'.hint_words({ hint_position = require'hop.hint'.HintPosition.END, inclusive_jump = true })<cr>", opt)
 
 
--- lsp 回调函数快捷键设置
 local pluginKeys = {}
 
 -- comment Plugin
 -- 代码注释插件
 -- see ./lua/plugin-config/comment.lua
-pluginKeys.comment = {
-  -- Normal 模式快捷键
-  toggler = {
-    line = "gcc", -- 行注释
-    block = "gbc", -- 块注释
-  },
-  -- Visual 模式
-  opleader = {
-    line = "gc",
-    block = "gb",
-  },
-}
+-- pluginKeys.comment = {
+--   -- Normal 模式快捷键
+--   toggler = {
+--     line = "gcc", -- 行注释
+--     block = "gbc", -- 块注释
+--   },
+--   -- Visual 模式
+--   opleader = {
+--     line = "gc",
+--     block = "gb",
+--   },
+-- }
+
+-- 代码注释插件
 -- ctrl + /
 map("n", "<C-_>", "gcc", { noremap = false })
 map("v", "<C-_>", "gbc", { noremap = false })
@@ -172,6 +174,7 @@ pluginKeys.gitsigns_on_attach = function(bufnr)
   -- Text object
   map({ "o", "x" }, "ig", ":<C-U>Gitsigns select_hunk<CR>")
 end
+-- gitsigns keymap end --
 
 
 -- lsp
