@@ -15,7 +15,8 @@ return require('packer').startup({
 
         -- theme
         use {
-            "ellisonleao/gruvbox.nvim",
+            -- "ellisonleao/gruvbox.nvim",
+            "morhetz/gruvbox", 
             requires = {"rktjmp/lush.nvim"}
         }
 

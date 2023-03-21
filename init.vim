@@ -10,6 +10,7 @@ lua require('basic')
 lua require('plugins')
 
 colorscheme gruvbox
+let g:gruvbox_contrast='hard'
 
 " plugins
 lua require('plugin-config/nvim-tree')
