@@ -19,8 +19,8 @@ end
 vim.keymap.set("n", "<leader>q", toggle_background)
 -- map("n", "<leader>q", toggle_background, opt)
 
-map("n", "<C-u>", "9k", opt)
-map("n", "<C-d>", "9j", opt)
+-- map("n", "<C-u>", "9k", opt)
+-- map("n", "<C-d>", "9j", opt)
 map("n", "<leader>r", ":set rnu!<cr>", opt)
 map("i", "<leader>c", "<esc>ciw", opt)
 map("i", "<leader>d", "<esc>diw", opt)
