@@ -30,6 +30,7 @@ map("i", "kj", "<esc>", opt)
 map("n", "<c-y>", "mZgg/class<cr>1000yy'Z:delmarks Z<cr>", opt)
 map("n", "H", "^", opt)
 map("n", "L", "$", opt)
+map("n", "<c-e>", "%", opt)
 -- neq => '!='
 map("i", "<leader>e", "!=", opt)
 map("i", "<leader>r", "->", opt)
@@ -122,6 +123,15 @@ pluginKeys.mapToggleTerm = function(toggleterm)
     vim.keymap.set({ "n", "t" }, "<leader>tc", toggleterm.toggleC)
     vim.keymap.set({ "n", "t" }, "<leader>tg", toggleterm.toggleG)
 end
+
+
+-- nvim-tree
+pluginKeys.nvimTree = {
+     -- v分屏打开文件
+  { key = "v", action = "vsplit" },
+  -- h分屏打开文件
+  { key = "h", action = "split" },
+}
 
 
 -- gitsigns
@@ -229,4 +239,7 @@ pluginKeys.cmp = function(cmp)
     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
   }
 end
+
+
+
 return pluginKeys
