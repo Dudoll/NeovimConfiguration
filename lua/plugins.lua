@@ -99,6 +99,25 @@ return require('packer').startup({
         -- marks
         use "chentoast/marks.nvim"
 
+        -- 实现光标在移动时的动画
+        use { 'gen740/SmoothCursor.nvim',
+          config = function()
+            require('smoothcursor').setup()
+          end
+        }
+
+        -- 实现在<c-d/u> zz 等 scroll 操作时的动画
+        use {
+          'declancm/cinnamon.nvim',
+          config = function() require('cinnamon').setup() end
+        }
+        -- use {
+            -- 'karb94/neoscroll.nvim', 
+            -- config = function()
+                -- require('neoscroll').setup()
+            -- end
+        -- }
+
         -- -----------------------lsp------------------------
         --lsp config plugin, nvim-lsp-installer 不再维护，更换为 mason.nvim
         -- use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}
