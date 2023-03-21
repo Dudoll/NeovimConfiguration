@@ -27,9 +27,7 @@ require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
     signcolumn = "yes",
     mappings = {
       custom_only = false,
-      list = {
-        -- user mappings go here
-      },
+      list = require("keybindings").nvimTree,
     },
   },
   renderer = {
