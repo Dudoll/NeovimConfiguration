@@ -22,6 +22,7 @@ keymap_sets.control = {
     ["<c-h>"] = {"<cmd>BufferLineCyclePrev<cr>", "prev bufferline"}, 
     ["<c-l>"] = {"<cmd>BufferLineCycleNext<cr>", "next bufferline"}, 
 }
+wkmap(keymap_sets.control, {mode = {"n", "v"}})
 
 keymap_sets.alt = {
     -- Nvimtree Plugin 左侧的目录树
@@ -33,12 +34,14 @@ keymap_sets.alt = {
     ["<a-k>"] = {"<c-w>k", "up windows"}, 
     ["<a-l>"] = {"<c-w>l", "right windows"}, 
 }
+wkmap(keymap_sets.alt)
 
 -- normal mode
 keymap_sets.normal = {
     H = {"^", "soft row head"}, 
     L = {"$", "row tail"}, 
 }
+wkmap(keymap_sets.normal)
 
 --------------------- in every mode -----------------------
 keymap_sets.every = {
@@ -49,6 +52,7 @@ keymap_sets.every = {
     T = {"<cmd>lua require'hop'.hint_char1({ direction = require('hop.hint').HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", "find prev cursor"}, 
     ["<leader>e"] = {"<cmd> lua require'hop'.hint_words({ hint_position = require'hop.hint'.HintPosition.END })<cr>", "find"}, 
 }
+wkmap(keymap_sets.every, {mode = {"n", "v", "o"}})
 
 -- normal mode with <leader>
 keymap_sets.leader_normal =  {
@@ -71,9 +75,8 @@ keymap_sets.leader_normal =  {
         j = {"<cmd>resize +10<CR>", "horizontal resite +10"}, 
         k = {"<cmd>resize -10<CR>", "horizontal resite -10"}, 
     }, 
-
-
 }
+wkmap(keymap_sets.leader_normal, {prefix = "<leader>"})
 
 
 -- insert mode with <leader>
@@ -86,6 +89,7 @@ keymap_sets.leader_insert =  {
     r = {"->", "->"},
     n = {"!=", "!="}, 
 }
+wkmap(keymap_sets.leadedr_insert, {prefix = "<leader>", mode = "i"})
 
 --------------------- vimtex -----------------------------
 wkmap( {['\\ll'] = {"<cmd>VimtexCompile<cr>", "tex compile"}}, {noremap = true} )
@@ -200,15 +204,5 @@ pluginKeys.cmp = function(cmp)
   }
 end
 ------------- nvim-cmp 自动补全 end --------------------
-
-
-
-wkmap(keymap_sets.leader_normal, {prefix = "<leader>"})
-wkmap(keymap_sets.leadedr_insert, {prefix = "<leader>", mode = "i"})
-wkmap(keymap_sets.every, {mode = {"n", "v", "o"}})
-wkmap(keymap_sets.normal)
-wkmap(keymap_sets.control)
-wkmap(keymap_sets.alt)
-
 
 return pluginKeys
