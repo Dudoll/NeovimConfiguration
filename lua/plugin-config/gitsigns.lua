@@ -43,3 +43,28 @@ require('gitsigns').setup {
     },
     on_attach = require("keybindings").gitsigns_on_attach,
 }
+
+local M = {}
+M.next_diff_in_file = function()
+    local gs = package.loaded.gitsigns
+    if vim.wo.diff then
+        return "]c"
+    end
+    vim.schedule(function ()
+        gs.next_hunk()
+    end)
+    return "<Ignore>"
+end
+
+M.pre_diff_in_file = function ()
+    if vim.wo.diff then
+      return "[c"
+    end
+    vim.schedule(function()
+      gs.prev_hunk()
+    end)
+    return "<Ignore>"
+end
+
+
+return M
