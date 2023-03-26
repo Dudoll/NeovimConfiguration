@@ -6,11 +6,10 @@ source ~/.config/nvim/.vimrc
 set nu
 
 lua require('keybindings')
-lua require('basic')
 lua require('plugins')
 
 colorscheme gruvbox
-let g:gruvbox_contrast='hard'
+let g:gruvbox_contrast_dark='hard'
 
 " plugins
 lua require('plugin-config/nvim-tree')
@@ -35,4 +34,7 @@ lua require('lsp/setup')
 lua require('lsp/nvim-cmp')
 lua require("lsp/ui")
 
-set laststatus=0
+" set laststatus=0
+
+" basic 设置放在这里的原因是有的插件配置和我们的相冲突，最后以 basic 为准
+lua require('basic')
