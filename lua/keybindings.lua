@@ -28,7 +28,7 @@ keymap_sets.alt = {
     -- Nvimtree Plugin 左侧的目录树
     ["<a-m>"] = {"<cmd>NvimTreeToggle<cr>", "nvim tree"}, 
 
-    -- 窗口之间跳转
+    -- windows 之间跳转
     ["<a-h>"] = {"<c-w>h", "left windows"}, 
     ["<a-j>"] = {"<c-w>j", "bottom windows"}, 
     ["<a-k>"] = {"<c-w>k", "up windows"}, 
@@ -99,8 +99,9 @@ keymap_sets.leader_normal =  {
     b = {"<cmd>BufferLinePickClose<cr>", "close one buffer"}, 
 
     -- windows
-    s = {
+    w = {
         -- 分屏
+        name = "windows"
         v = {"<cmd>vsp<cr>", "v split the window"}, 
         h = {"<cmd>sp<cr>", "split the window"}, 
         c = {"<c-w>c", "close the windows"}, 
