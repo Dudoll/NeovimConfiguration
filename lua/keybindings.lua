@@ -89,7 +89,7 @@ keymap_sets.hop = {
         "find"
     }, 
 }
-wkmap(keymap_sets.hop, {mode = {""}})
+wkmap(keymap_sets.hop, {mode = {"n", "v", "o"}})
 
 -- normal mode with <leader>
 keymap_sets.leader_normal =  {
