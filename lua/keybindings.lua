@@ -5,7 +5,7 @@ vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
 -- local map = vim.api.nvim_set_keymap
--- local kmap = vim.keymap.set
+local kmap = vim.keymap.set
 -- local opt = {noremap = true, silent = true}
 local pluginKeys = {}
 
@@ -43,16 +43,54 @@ keymap_sets.normal = {
 }
 wkmap(keymap_sets.normal)
 
---------------------- in every mode -----------------------
-keymap_sets.every = {
-    -- hop.vim (快速跳转)
-    f = {"<cmd>lua require'hop'.hint_char1({current_line_only = true})<cr>", "find this line"}, 
-    F = {"<cmd>lua require'hop'.hint_char1()<cr>", "find the buffer"}, 
-    t = {"<cmd>lua require'hop'.hint_char1({ direction = require('hop.hint').HintDirection.AFTER_CURSOR,  current_line_only = true, hint_offset = -1})<cr>", "find after cursor"}, 
-    T = {"<cmd>lua require'hop'.hint_char1({ direction = require('hop.hint').HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", "find prev cursor"}, 
-    ["<leader>e"] = {"<cmd> lua require'hop'.hint_words({ hint_position = require'hop.hint'.HintPosition.END })<cr>", "find"}, 
+--------------------- hop (overide f/F/t/T) -----------------------
+local hop = require("hop")
+local hop_direction = require("hop.hint").HintDirection
+keymap_sets.hop = {
+    f = {
+        function() 
+            hop.hint_char1({current_line_only = true}) 
+        end, 
+        "find char in this line"}, 
+
+    F = {
+        function() hop.hint_char1() end, 
+        "find char in this buffer"
+    }, 
+
+    t = {
+        function()
+            hop.hint_char1({
+                direction = hop_direction.AFTER_CURSOR, 
+                current_line_only = true, 
+                hint_offset = -1
+            })
+        end, 
+        "find after cursor"
+    }, 
+
+    T = {
+        function()
+            hop.hint_char1({
+                direction = hop_direction.BEFORE_CURSOR, 
+                current_line_only = true, 
+                hint_offset = -1
+            })
+        end, 
+        "find before cursor"
+    }, 
+
+
+    ["<leader>e"] = {
+        function()
+            hop.hint_words({ 
+                -- hint_position = require'hop.hint'.HintPosition.END 
+            })
+        end, 
+        "find"
+    }, 
 }
-wkmap(keymap_sets.every, {mode = {"n", "v", "o"}})
+wkmap(keymap_sets.hop, {mode = {""}})
 
 -- normal mode with <leader>
 keymap_sets.leader_normal =  {
@@ -134,7 +172,7 @@ keymap_sets.gitsigns = {
         }
     }
 }
-wkmap(keymap_sets.gitsigns, {expr = true, prefix = "<leader>"})
+wkmap(keymap_sets.gitsigns, {prefix = "<leader>"})
 
 --------------------------- telescope -----------------------------------
 local ts = require("telescope.builtin")
