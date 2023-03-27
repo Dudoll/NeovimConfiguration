@@ -127,7 +127,7 @@ keymap_sets.leader_insert =  {
     r = {"->", "->"},
     n = {"!=", "!="}, 
 }
-wkmap(keymap_sets.leadedr_insert, {prefix = "<leader>", mode = "i"})
+wkmap(keymap_sets.leader_insert, {prefix = "<leader>", mode = "i"})
 
 --------------------- vimtex -----------------------------
 wkmap( {['\\ll'] = {"<cmd>VimtexCompile<cr>", "tex compile"}}, {noremap = true} )
