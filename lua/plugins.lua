@@ -119,37 +119,41 @@ return require('packer').startup({
         -- }
 
         -- -----------------------lsp------------------------
-        --lsp config plugin, nvim-lsp-installer 不再维护，更换为 mason.nvim
-        -- use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}
         use({ "williamboman/mason.nvim" })
         use({ "williamboman/mason-lspconfig.nvim" })
         use ({'neovim/nvim-lspconfig'})
 
         -- 代码自动补全
-        use 'hrsh7th/cmp-nvim-lsp' -- { name = nvim_lsp }
-        use 'hrsh7th/cmp-buffer'   -- { name = 'buffer' },
-        use 'hrsh7th/cmp-path'     -- { name = 'path' }
-        use 'hrsh7th/cmp-cmdline'  -- { name = 'cmdline' }
-        use 'hrsh7th/nvim-cmp'
-        -- vsnip
-        use 'hrsh7th/cmp-vsnip'    -- { name = 'vsnip' }
-        use 'hrsh7th/vim-vsnip'
-        use 'rafamadriz/friendly-snippets'
+        use {
+            'hrsh7th/nvim-cmp', 
+            requires = {
+                'hrsh7th/cmp-nvim-lsp', 
+                'hrsh7th/cmp-buffer', 
+                'hrsh7th/cmp-path',      -- { name = 'path' }
+                'hrsh7th/cmp-cmdline',   -- { name = 'cmdline' }
+                'hrsh7th/cmp-vsnip',     -- { name = 'vsnip' }
+                'hrsh7th/vim-vsnip', 
+                "ray-x/cmp-treesitter",
+                -- vsnip
+                'rafamadriz/friendly-snippets', 
+            }
+        }
         -- UI 增强
         use("onsails/lspkind-nvim")
         use("tami5/lspsaga.nvim")
         -- 代码格式化
         use("mhartington/formatter.nvim")
-        use({ "jose-elias-alvarez/null-ls.nvim", requires = "nvim-lua/plenary.nvim" })
+        use({ "jose-elias-alvarez/null-ls.nvim", 
+            requires = "nvim-lua/plenary.nvim" 
+        })
         -- TypeScript 增强
-        use({ "jose-elias-alvarez/nvim-lsp-ts-utils", requires = "nvim-lua/plenary.nvim" })
+        use({ "jose-elias-alvarez/nvim-lsp-ts-utils", 
+            requires = "nvim-lua/plenary.nvim" 
+        })
         -- Lua 增强
         use("folke/lua-dev.nvim")
         -- JSON 增强
         use("b0o/schemastore.nvim")
-        -- Rust 增强
-        use("simrat39/rust-tools.nvim")
-
 
     end,
 }) 
