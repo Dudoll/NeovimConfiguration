@@ -226,12 +226,12 @@ keymap_sets.lsp_goto = {
 wkmap(keymap_sets.lsp_goto)
 
 ------------- nvim-cmp 自动补全 --------------------
-local cmp = require("cmp")
-keymap_sets.cmp = {
-    ['<c-p>'] = {cmp.mapping.select_prev_item(), "prev item"},
-    ['<c-n>'] = {cmp.mapping.select_next_item(), "next item"}, 
-}
-wkmap(keymap_sets.cmp, {mode = "i"})
+-- local cmp = require("cmp")
+-- keymap_sets.cmp = {
+    -- ['<c-p>'] = {cmp.mapping.select_prev_item(), "prev item"},
+    -- ['<c-n>'] = {cmp.mapping.select_next_item(), "next item"}, 
+-- }
+-- wkmap(keymap_sets.cmp, {mode = "i"})
 
 pluginKeys.cmp = function(cmp)
   return {
@@ -239,6 +239,8 @@ pluginKeys.cmp = function(cmp)
                   select = true ,
                   behavior = cmp.ConfirmBehavior.Replace
                 }),
+    ['<c-p>'] = cmp.mapping.select_prev_item(),
+    ['<c-n>'] = cmp.mapping.select_next_item(),
   }
 end
 ------------- nvim-cmp 自动补全 end --------------------
