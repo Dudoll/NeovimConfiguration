@@ -101,7 +101,7 @@ keymap_sets.leader_normal =  {
     -- windows
     w = {
         -- 分屏
-        name = "windows"
+        name = "windows", 
         v = {"<cmd>vsp<cr>", "v split the window"}, 
         h = {"<cmd>sp<cr>", "split the window"}, 
         c = {"<c-w>c", "close the windows"}, 
