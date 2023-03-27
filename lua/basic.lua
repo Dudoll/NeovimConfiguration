@@ -1,5 +1,5 @@
 inifile = require('inifile')
-ini_conf_path = vim.fn.stdpath("config") .. "/lua/conf.ini"
+ini_conf_path = vim.fn.stdpath("config") .. "/lua/.conf.ini"
 ini_conf = inifile.parse(ini_conf_path)
 
 -- 设定自动保存函数

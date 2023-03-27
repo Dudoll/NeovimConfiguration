@@ -12,7 +12,7 @@ local pluginKeys = {}
 ------- 利用 which-key 实现快捷键 ---------
 local wkmap = require("which-key").register
 local keymap_sets = {}
-local keybinding_funcs = require("keybinding_funcs")
+local keybinding_funcs = require(".keybinding_funcs")
 
 
 keymap_sets.control = {
