@@ -3,9 +3,8 @@
 
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
-
 -- local map = vim.api.nvim_set_keymap
-local kmap = vim.keymap.set
+-- local kmap = vim.keymap.set
 -- local opt = {noremap = true, silent = true}
 local pluginKeys = {}
 
