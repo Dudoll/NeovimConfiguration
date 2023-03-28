@@ -251,7 +251,7 @@ keymap_sets.lsp_goto = {
         }, 
         d = {
             "<cmd>Lspsaga goto_definition<cr>", 
-            "peek definition"
+            "goto definition"
         }, 
         i = {
             "<cmd>lua vim.lsp.buf.implementation()<cr>", 

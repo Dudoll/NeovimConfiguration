@@ -142,9 +142,9 @@ return require('packer').startup({
         use("onsails/lspkind-nvim")
         use {
             "glepnir/lspsaga.nvim", 
-            opt = true,
+            -- opt = true,
             branch = "main",
-            -- event = "LspAttach", 
+            event = "LspAttach", 
             config = function()
                 require("lspsaga").setup({})
             end,

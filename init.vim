@@ -31,7 +31,7 @@ lua require('lsp/setup')
 " 代码补全配置
 lua require('lsp/nvim-cmp')
 lua require("lsp/ui")
-" lua require("lsp/lspsaga")
+lua require("lsp/lspsaga")
 " lua require("lsp/null-ls")
 
 " set laststatus=0
