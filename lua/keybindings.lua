@@ -204,35 +204,61 @@ wkmap(keymap_sets.toggleterm, {prefix = "<leader>"})
 ---------------------------lsp-----------------------------------
 keymap_sets.lsp_goto = {
     g = {
-        d = {"<cmd>lua vim.lsp.buf.definition()<cr>", "get definition"}, 
-        h = {"<cmd>lua vim.lsp.buf.hover()<cr>", "get hover"}, 
-        D = {"<cmd>lua vim.lsp.buf.declaration()<cr>", "get delaration"}, 
-        i = {"<cmd>lua vim.lsp.buf.implementation()<cr>", "get implementation"}, 
-        r = {"<cmd>lua vim.lsp.buf.references()<cr>", "get references"}, 
-        o = {"<cmd>lua vim.diagnostic.open_float()<cr>", "diagnostic open float"}, 
-        p = {"<cmd>lua vim.diagnostic.goto_prev()<cr>", "diagnostic goto prev"}, 
-        n = {"<cmd>lua vim.diagnostic.goto_next()<cr>", "diagnostic goto next"}, 
+        r = {
+            "<cmd>Lspsaga lsp_finder<cr>", 
+            "peek reference"
+        }, 
+        h = {
+            "<cmd>Lspsaga hover_doc ++quiet<cr>", 
+            "peek hover"
+        }, 
+        d = {
+            "<cmd>Lspsaga preview_definition<cr>", 
+            "peek definition"
+        }, 
+        i = {
+            "<cmd>lua vim.lsp.buf.implementation()<cr>", 
+            "get implementation"
+        }, 
+        p = {
+            "<cmd>Lspsaga diagnostic_jump_prev<cr>", 
+            "diagnostic goto prev"
+        }, 
+        n = {
+            "<cmd>Lspsaga diagnostic_jump_next<cr>", 
+            "diagnostic goto next"
+        }, 
+        t = {
+            "<cmd>Lspsaga goto_type_definition<cr>", 
+            "goto type definition"
+        }, 
     }, 
-    ["<leader>r"] = {
-        n = {"<cmd>lua vim.lsp.buf.rename()<cr>", "rename"}, 
-    }, 
-    ["<space>ca"] = {
-        "<cmd>lua vim.lsp.buf.code_action()<cr>", "code action"
-    }, 
-    ["<leader>="] = {
-        "<cmd>lua vim.lsp.buf.formatting()<cr>", "code formatting"
+    ["<leader>"] = {
+        s = {
+            name = "show diagnostic", 
+            l = {"<cmd>Lspsaga show_line_diagnostics ++unfocus<cr>", 
+                "show line diagnostics"}, 
+            c = {"<cmd>Lspsaga show_cursor_diagnostics ++unfocus<cr>", 
+                "show cursor diagnostics"}, 
+            o = {"<cmd>Lspsaga outline<cr>", "outline"}, 
+        }, 
+        c = {
+            name = "code action", 
+            a = {
+                "<cmd>Lspsaga code_action<cr>", 
+                "code action"
+            }
+        }, 
+        r = {
+            "<cmd>Lspsaga rename ++project<cr>", "rename the variable"
+        }, 
+        ["="] = {
+            "<cmd>lua vim.lsp.buf.formatting()<cr>", "code formatting"
+        }, 
     }, 
 }
 wkmap(keymap_sets.lsp_goto)
-
 ------------- nvim-cmp 自动补全 --------------------
--- local cmp = require("cmp")
--- keymap_sets.cmp = {
-    -- ['<c-p>'] = {cmp.mapping.select_prev_item(), "prev item"},
-    -- ['<c-n>'] = {cmp.mapping.select_next_item(), "next item"}, 
--- }
--- wkmap(keymap_sets.cmp, {mode = "i"})
-
 pluginKeys.cmp = function(cmp)
   return {
     ['<CR>'] = cmp.mapping.confirm({
