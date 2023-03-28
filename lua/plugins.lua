@@ -144,13 +144,13 @@ return require('packer').startup({
             "glepnir/lspsaga.nvim", 
             opt = true,
             branch = "main",
-            event = "LspAttach", 
+            -- event = "LspAttach", 
             config = function()
                 require("lspsaga").setup({})
             end,
-            after = {
-                "neovim/nvim-lspconfig", 
-            }, 
+            -- after = {
+                -- "neovim/nvim-lspconfig", 
+            -- }, 
             requires = {
                 {"nvim-tree/nvim-web-devicons"},
                 --Please make sure you install markdown and markdown_inline parser
