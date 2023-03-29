@@ -37,6 +37,8 @@ wkmap(keymap_sets.normal)
 -- insert mode
 keymap_sets.insert = {
     ["<c-d>"] = {"<delete>", "delete"}, 
+    ["<c-a>"] = {"<esc>I", "the head of the line"}, 
+    ["<c-e>"] = {"<esc>A", "the tail of the line"}, 
 }
 wkmap(keymap_sets.insert, {mode = "i"});
 
