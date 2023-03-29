@@ -118,6 +118,9 @@ return require('packer').startup({
             -- end
         -- }
 
+        -- 代码长度超出范围预警线
+        use 'Bekaboo/deadcolumn.nvim'
+
         -- -----------------------lsp------------------------
         use({ "williamboman/mason.nvim" })
         use({ "williamboman/mason-lspconfig.nvim" })
@@ -143,8 +146,8 @@ return require('packer').startup({
         use {
             "glepnir/lspsaga.nvim", 
             -- opt = true,
-            branch = "main",
-            event = "LspAttach", 
+            -- branch = "main",
+            -- event = "LspAttach", 
             config = function()
                 require("lspsaga").setup({})
             end,

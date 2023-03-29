@@ -25,13 +25,14 @@ lua require('plugin-config/Comment')
 lua require('plugin-config/hop')
 lua require('plugin-config/surround')
 lua require('plugin-config/marks')
+lua require('plugin-config/deadcolumn')
 
 "   lsp
 lua require('lsp/setup')
 " 代码补全配置
 lua require('lsp/nvim-cmp')
 lua require("lsp/ui")
-lua require("lsp/lspsaga")
+" lua require("lsp/lspsaga")
 " lua require("lsp/null-ls")
 
 " set laststatus=0
