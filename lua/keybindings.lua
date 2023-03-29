@@ -260,7 +260,7 @@ keymap_sets.lsp_goto = {
             "get implementation"
         }, 
         p = {
-            "<cmd>Lspsaga diagnostic_jump_prev<cr>", 
+            "<cmd>Lspsaga diagnostic_jump_next<cr>", 
             "diagnostic goto prev"
         }, 
         n = {
