@@ -11,7 +11,7 @@ local pluginKeys = {}
 ------- 利用 which-key 实现快捷键 ---------
 local wkmap = require("which-key").register
 local keymap_sets = {}
-local keybinding_funcs = require("config/keybinding_funcs")
+local conf_funcs = require("config/funcs")
 
 -- normal mode
 keymap_sets.normal = {
@@ -45,8 +45,11 @@ wkmap(keymap_sets.insert, {mode = "i"});
 -- normal mode with <leader>
 keymap_sets.leader_normal =  {
     r = {":set rnu!<cr>", "change rnu"}, 
-    q = {keybinding_funcs.toggle_background, "toggle background color"}, 
-    b = {"<cmd>BufferLinePickClose<cr>", "close one buffer"}, 
+    q = {conf_funcs.toggle_background, "toggle background color"}, 
+    b = {"<cmd>bd<cr>", "close one buffer"}, 
+    c = {
+        b = {"<cmd>BufferLinePickClose<cr>", "close one buffer"}
+    }, 
 
     -- windows
     w = {
@@ -85,13 +88,21 @@ local hop_direction = require("hop.hint").HintDirection
 keymap_sets.hop = {
     f = {
         function() 
-            hop.hint_char1({current_line_only = true}) 
+            hop.hint_char1({
+                current_line_only = true, 
+                direction = hop_direction.AFTER_CURSOR, 
+            })
         end, 
         "find char in this line"}, 
 
     F = {
-        function() hop.hint_char1() end, 
-        "find char in this buffer"
+        function() 
+            hop.hint_char1({
+                current_line_only = true, 
+                direction = hop_direction.BEFORE_CURSOR, 
+            })
+        end, 
+        "find char in this line"
     }, 
 
     t = {
@@ -110,7 +121,7 @@ keymap_sets.hop = {
             hop.hint_char1({
                 direction = hop_direction.BEFORE_CURSOR, 
                 current_line_only = true, 
-                hint_offset = -1
+                hint_offset = 1
             })
         end, 
         "find before cursor"
@@ -162,11 +173,11 @@ keymap_sets.gitsigns = {
     g = {
         name = "gitsigns",
         j = {
-            keybinding_funcs.next_diff_in_file, 
+            conf_funcs.next_diff_in_file, 
             "next diff in this file"
         }, 
         k = {
-            keybinding_funcs.pre_diff_in_file, 
+            conf_funcs.pre_diff_in_file, 
             "prev diff in this file"
         }, 
         s = {
