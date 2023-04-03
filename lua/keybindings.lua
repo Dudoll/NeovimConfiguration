@@ -82,6 +82,25 @@ keymap_sets.leader_insert =  {
 }
 wkmap(keymap_sets.leader_insert, {prefix = "<leader>", mode = "i"})
 
+--------------------- cinnamon 平滑 scroll------------------------
+keymap_sets.cinnamon = {
+    -- zz/zt/zb 平滑 scroll
+    z = {
+      z = {"<Cmd>lua Scroll('zz', 0, 1)<CR>", "center this line"}, 
+      t = {"<Cmd>lua Scroll('zt', 0, 1)<CR>", "top this line"}, 
+      b = {"<Cmd>lua Scroll('zb', 0, 1)<CR>", "bottom this line"}, 
+    }, 
+
+    -- n/N for search 平滑 scroll
+    -- n = {"<Cmd>lua Scroll('n', 1)<CR>", "next"}, 
+    -- N = {"<Cmd>lua Scroll('N', 1)<CR>", "prev"}, 
+
+    k = {"<Cmd>lua Scroll('k', 0, 1)<CR>", "prev line"}, 
+    j = {"<Cmd>lua Scroll('j', 0, 1)<CR>", "next line"}, 
+}
+wkmap(keymap_sets.cinnamon)
+
+
 --------------------- hop (overide f/F/t/T) -----------------------
 local hop = require("hop")
 local hop_direction = require("hop.hint").HintDirection
