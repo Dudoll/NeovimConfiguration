@@ -44,7 +44,9 @@ wkmap(keymap_sets.insert, {mode = "i"});
 
 -- normal mode with <leader>
 keymap_sets.leader_normal =  {
-    r = {":set rnu!<cr>", "change rnu"}, 
+    r = {
+        n = {":set rnu!<cr>", "change rnu"}, 
+    }, 
     q = {conf_funcs.toggle_background, "toggle background color"}, 
     b = {"<cmd>bd<cr>", "close one buffer"}, 
     c = {
@@ -247,6 +249,7 @@ wkmap(keymap_sets.gitsigns, {prefix = "<leader>"})
 local ts = require("telescope.builtin")
 keymap_sets.telescope = {
     f = {
+        name = "telescope", 
         f = {ts.find_files, "find files"}, 
         g = {ts.live_grep, "live grep"}, 
         b = {ts.buffers, "buffers"}, 
@@ -325,7 +328,8 @@ keymap_sets.lsp_goto = {
             }
         }, 
         r = {
-            "<cmd>Lspsaga rename ++project<cr>", "rename the variable"
+            name = "rename / relative number", 
+            r = {"<cmd>Lspsaga rename ++project<cr>", "rename the variable"}, 
         }, 
         ["="] = {
             "<cmd>lua vim.lsp.buf.formatting()<cr>", "code formatting"
