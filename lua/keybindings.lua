@@ -18,6 +18,7 @@ keymap_sets.normal = {
     H = {"^", "soft row head"}, 
     L = {"$", "row tail"}, 
     ["<c-e>"] = {"%", "surround pair"}, 
+    ["<c-y>"] = {"mZgg9999yy'Z<cmd>delmarks Z<cr>", "copy this file"}, 
     
     -- bufferline Plugin 标签栏
     ["<c-h>"] = {"<cmd>BufferLineCyclePrev<cr>", "prev bufferline"}, 
@@ -75,8 +76,8 @@ wkmap(keymap_sets.leader_normal, {prefix = "<leader>"})
 -- insert mode with <leader>
 keymap_sets.leader_insert =  {
     c = {"<esc>ciw", "ciw"},
-    d = {"<esc>diw", "diw"},
-    a = {"<Right>", "move right"},
+    a = {"<Left>", "move left"},
+    d = {"<Right>", "move right"}, 
     s = {"<esc>S", "delete this row"},
     e = {"=", "="}, 
     r = {"->", "->"},
