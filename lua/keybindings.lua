@@ -33,7 +33,8 @@ keymap_sets.normal = {
     ["<a-k>"] = {"<c-w>k", "up windows"}, 
     ["<a-l>"] = {"<c-w>l", "right windows"}, 
 }
-wkmap(keymap_sets.normal)
+wkmap(keymap_sets.normal, {mode = "n"})
+wkmap(keymap_sets.normal, {mode = "v"})
 
 -- insert mode
 keymap_sets.insert = {
