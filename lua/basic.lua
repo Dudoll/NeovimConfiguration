@@ -1,371 +1,109 @@
--- vim 各种模式的区别
--- https://neovim.io/doc/user/map.html#mapmode-n
-
-vim.g.mapleader = ","
-vim.g.maplocalleader = ","
--- local map = vim.api.nvim_set_keymap
--- local kmap = vim.keymap.set
--- local opt = {noremap = true, silent = true}
-local pluginKeys = {}
-
-------- 利用 which-key 实现快捷键 ---------
-local wkmap = require("which-key").register
-local keymap_sets = {}
-local conf_funcs = require("config/funcs")
-
--- normal mode
-keymap_sets.normal = {
-    H = {"^", "soft row head"}, 
-    L = {"$", "row tail"}, 
-    ["<c-e>"] = {"%", "surround pair"}, 
-    ["<c-y>"] = {"mZgg9999yy'Z<cmd>delmarks Z<cr>", "copy this file"}, 
-    
-    -- bufferline Plugin 标签栏
-    ["<a-h>"] = {"<cmd>BufferLineCyclePrev<cr>", "prev bufferline"}, 
-    ["<a-l>"] = {"<cmd>BufferLineCycleNext<cr>", "next bufferline"}, 
-
-    -- Nvimtree Plugin 左侧的目录树
-    ["<a-m>"] = {"<cmd>NvimTreeToggle<cr>", "nvim tree"}, 
-
-    -- windows 之间跳转
-    ["<c-h>"] = {"<c-w>h", "left windows"}, 
-    ["<c-j>"] = {"<c-w>j", "bottom windows"}, 
-    ["<c-k>"] = {"<c-w>k", "up windows"}, 
-    ["<c-l>"] = {"<c-w>l", "right windows"}, 
-
-    ["<c-d>"] = {"5j"},
-    ["<c-u>"] = {"5k"},
-}
-wkmap(keymap_sets.normal, {mode = "n"})
-wkmap(keymap_sets.normal, {mode = "v"})
-
--- insert mode
-keymap_sets.insert = {
-    ["<c-d>"] = {"<delete>", "delete"}, 
-    ["<c-f>"] = {"<Right>", "Right"}, 
-    ["<c-b>"] = {"<Left>", "Left"}, 
-    ["<c-a>"] = {"<esc>I", "the head of the line"}, 
-    ["<c-e>"] = {"<esc>A", "the tail of the line"}, 
-    k = {
-        j = {"<esc>", "normal mode"}, 
-    }
-}
-wkmap(keymap_sets.insert, {mode = "i"});
-
--- normal mode with <leader>
-keymap_sets.leader_normal =  {
-    r = {
-        n = {":set rnu!<cr>", "change rnu"}, 
-    }, 
-    q = {conf_funcs.toggle_background, "toggle background color"}, 
-    b = {"<cmd>bd<cr>", "close one buffer"}, 
-    c = {
-        b = {"<cmd>BufferLinePickClose<cr>", "close one buffer"}
-    }, 
-
-    -- windows
-    w = {
-        -- 分屏
-        name = "windows", 
-        v = {"<cmd>vsp<cr>", "v split the window"}, 
-        h = {"<cmd>sp<cr>", "split the window"}, 
-        c = {"<c-w>c", "close the windows"}, 
-        o = {"<c-w>o", "only save the current window"}, 
-
-        -- 屏幕 resize
-        [">"] = {"<cmd>vertical resize +20<cr>", "vertical resize +20"}, 
-        ["<"] = {"<cmd>vertical resize -20<CR>", "vertical resize -20"}, 
-        ["="] = {"<c-w>=", ""}, 
-        j = {"<cmd>resize +10<CR>", "horizontal resite +10"}, 
-        k = {"<cmd>resize -10<CR>", "horizontal resite -10"}, 
-    }, 
-}
-wkmap(keymap_sets.leader_normal, {prefix = "<leader>"})
-
--- insert mode with <leader>
-keymap_sets.leader_insert =  {
-    c = {"<esc>ciw", "ciw"},
-    a = {"<Left>", "move left"},
-    d = {"<Right>", "move right"}, 
-    s = {"<esc>S", "delete this row"},
-    e = {"=", "="}, 
-    r = {"->", "->"},
-    n = {"!=", "!="}, 
-}
-wkmap(keymap_sets.leader_insert, {prefix = "<leader>", mode = "i"})
-
---------------------- cinnamon 平滑 scroll------------------------
--- keymap_sets.cinnamon = {
---     -- zz/zt/zb 平滑 scroll
---     z = {
---       z = {"<Cmd>lua Scroll('zz', 0, 1)<CR>", "center this line"}, 
---       t = {"<Cmd>lua Scroll('zt', 0, 1)<CR>", "top this line"}, 
---       b = {"<Cmd>lua Scroll('zb', 0, 1)<CR>", "bottom this line"}, 
---     }, 
+-- inifile = require('inifile')
+-- ini_conf_path = vim.fn.stdpath("config") .. "/lua/config/.conf.ini"
+-- ini_conf = inifile.parse(ini_conf_path)
+-- local conf_funcs = require("config/funcs")
 -- 
---     -- n/N for search 平滑 scroll
---     -- n = {"<Cmd>lua Scroll('n', 1)<CR>", "next"}, 
---     -- N = {"<Cmd>lua Scroll('N', 1)<CR>", "prev"}, 
--- 
---     k = {"<Cmd>lua Scroll('k', 0, 1)<CR>", "prev line"}, 
---     j = {"<Cmd>lua Scroll('j', 0, 1)<CR>", "next line"}, 
--- }
--- wkmap(keymap_sets.cinnamon)
+-- -- 在nvim退出时, 自动保存ini_conf配置
+-- vim.api.nvim_create_augroup("exitCheck", {clear = true})
+-- vim.api.nvim_create_autocmd("VimLeavePre", {
+--     group = "exitCheck",
+--     command = "lua save_iniconf()",
+-- })
+-- 部分电脑无法使用 luainstall, 所以不适用文件来解析 config
+-- background
+vim.go.background = "dark"
+-- vim.go.background = ini_conf['global']['background']
 
+-- utf8
+vim.g.encoding = "UTF-8"
+vim.o.fileencoding = "utf-8"
+-- jkhl 移动时光标周围保留8行
+vim.o.scroll = 9
+vim.o.scrolloff = 8
+vim.o.sidescrolloff = 8
+-- 使用相对行号
+vim.wo.number = true
+-- vim.wo.relativenumber = true
+-- 高亮所在行
+vim.wo.cursorline = true
+-- 显示左侧图标指示列
+vim.wo.signcolumn = "yes"
+-- 右侧参考线，超过表示代码太长了，考虑换行
+vim.wo.colorcolumn = 120
+-- 缩进4个空格等于一个Tab
+vim.o.tabstop = 4
+vim.bo.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftround = 4
+-- >> << 时移动长度
+vim.o.shiftwidth = 4
+vim.bo.shiftwidth = 4
+-- -- 缩进4个空格等于一个Tab
+-- vim.o.tabstop = ini_conf['global']['tab']
+-- vim.bo.tabstop = ini_conf['global']['tab']
+-- vim.o.softtabstop = ini_conf['global']['tab']
+-- vim.o.shiftround = true
+-- -- >> << 时移动长度
+-- vim.o.shiftwidth = ini_conf['global']['tab']
+-- vim.bo.shiftwidth = ini_conf['global']['tab']
+-- 空格替代tab
+vim.o.expandtab = true
+vim.bo.expandtab = true
+-- 新行对齐当前行
+vim.o.autoindent = true
+vim.bo.autoindent = true
+vim.o.smartindent = true
+-- 搜索大小写不敏感，除非包含大写
+vim.o.ignorecase = true
+vim.o.smartcase = true
+-- 搜索不要高亮
+vim.o.hlsearch = false
+-- 边输入边搜索
+vim.o.incsearch = true
+-- 命令行高为2，提供足够的显示空间
+vim.o.cmdheight = 1
+-- 当文件被外部程序修改时，自动加载
+vim.o.autoread = true
+vim.bo.autoread = true
+-- 禁止折行
+vim.wo.wrap = true
+-- 光标在行首尾时<Left><Right>可以跳到下一行
+vim.o.whichwrap = "<,>,[,]"
+-- 允许隐藏被修改过的buffer
+vim.o.hidden = true
+-- 鼠标支持
+vim.o.mouse = "a"
+-- 禁止创建备份文件
+vim.o.backup = false
+vim.o.writebackup = false
+vim.o.swapfile = false
+-- smaller updatetime
+vim.o.updatetime = 300
+-- 设置 timeoutlen 为等待键盘快捷键连击时间500毫秒，可根据需要设置
+-- 遇到问题详见：https://github.com/nshen/learn-neovim-lua/issues/1
+vim.o.timeoutlen = 500
+-- split window 从下边和右边出现
+vim.o.splitbelow = true
+vim.o.splitright = true
+-- 自动补全不自动选中
+vim.g.completeopt = "menu,menuone,noselect,noinsert"
+-- 样式
+vim.o.termguicolors = true
+vim.opt.termguicolors = true
+-- 是否显示不可见字符
+vim.o.list = false
+-- 不可见字符的显示，这里只把空格显示为一个点
+vim.o.listchars = "space:·,tab:··"
+-- 补全增强
+vim.o.wildmenu = true
+-- Dont' pass messages to |ins-completin menu|
+vim.o.shortmess = vim.o.shortmess .. "c"
+-- 补全最多显示10行
+vim.o.pumheight = 10
+-- 永远显示 tabline
+vim.o.showtabline = 2
+-- 使用增强状态栏插件后不再需要 vim 的模式提示
+vim.o.showmode = false
+-- 配置剪切板
+vim.opt.clipboard = "unnamedplus"
 
---------------------- hop (overide f/F/t/T) -----------------------
-local hop = require("hop")
-local hop_direction = require("hop.hint").HintDirection
-keymap_sets.hop = {
-    f = {
-        function() 
-            hop.hint_char1({
-                current_line_only = true, 
-                direction = hop_direction.AFTER_CURSOR, 
-            })
-        end, 
-        "find char in this line"}, 
-
-    F = {
-        function() 
-            hop.hint_char1({
-                current_line_only = true, 
-                direction = hop_direction.BEFORE_CURSOR, 
-            })
-        end, 
-        "find char in this line"
-    }, 
-
-    t = {
-        function()
-            hop.hint_char1({
-                direction = hop_direction.AFTER_CURSOR, 
-                current_line_only = true, 
-                hint_offset = -1
-            })
-        end, 
-        "find after cursor"
-    }, 
-
-    T = {
-        function()
-            hop.hint_char1({
-                direction = hop_direction.BEFORE_CURSOR, 
-                current_line_only = true, 
-                hint_offset = 1
-            })
-        end, 
-        "find before cursor"
-    }, 
-
-
-    ["<leader>e"] = {
-        function()
-            hop.hint_words({ 
-                -- hint_position = require'hop.hint'.HintPosition.END 
-            })
-        end, 
-        "find"
-    }, 
-}
-wkmap(keymap_sets.hop, {mode = {"n", "v", "o"}})
-
---------------------- vimtex -----------------------------
-wkmap( {
-        ['\\ll'] = {
-            "<cmd>VimtexCompile<cr>", 
-            "tex compile"
-        }
-    },
-    {noremap = true} 
-)
-wkmap( {
-        ['\\ll'] = {
-            "<cmd>VimtexCompile<cr>", 
-            "tex compile"
-        }, 
-        ["\\lv"] = {
-            "<cmd>VimtexView<cr>", 
-            "tex view"
-        }
-    }, 
-    {noremap = true} 
-)
-
--- 代码注释
--- ctrl + /
-wkmap( {["<c-_>"] = {"gcc", "comment one line"}}, {noremap = false} )
-wkmap( {["<c-_>"] = {"gbc", "comment one block"}}, {mode = "v", noremap = false} )
-
-
--------------------gitsigns------------------------------
-local gs = require("gitsigns")
-keymap_sets.gitsigns = {
-    g = {
-        name = "gitsigns",
-        j = {
-            conf_funcs.next_diff_in_file, 
-            "next diff in this file"
-        }, 
-        k = {
-            conf_funcs.pre_diff_in_file, 
-            "prev diff in this file"
-        }, 
-        s = {
-            
-            "<cmd>Gitsigns stage_hunk<cr>", "stage hunk"
-        }, 
-        r = {
-            
-            "<cmd>Gitsigns reset_hunk<cr>", "reset hunk"
-        }, 
-        S = {
-            gs.stage_buffer, 
-            "sgate buffer"
-        }, 
-        u = {
-            gs.undo_stage_hunk, 
-            "undo stage hunk"
-        }, 
-        R = {
-            gs.reset_buffer, 
-            "reset buffer"
-        }, 
-        p = {
-            gs.preview_hunk, 
-            "preview hunk"
-        }, 
-        b = {function() gs.blame_line({full = true}) end, 
-            "blame"
-        }, 
-        d = {
-            gs.diffthis, 
-            "diff this"
-        }, 
-        D = {
-            function() gs.diffthis(
-                "~") end, "diff this ~"
-        }, 
-        t = {
-            name = "toggle", 
-            d = {gs.toggle_deleted, "toggle deleted"}, 
-            b = {gs.toggle_current_line_blame, "toggle current line blame"}, 
-        }
-    }
-}
-wkmap(keymap_sets.gitsigns, {prefix = "<leader>"})
-
---------------------------- telescope -----------------------------------
-local ts = require("telescope.builtin")
-keymap_sets.telescope = {
-    f = {
-        name = "telescope", 
-        f = {ts.find_files, "find files"}, 
-        g = {ts.live_grep, "live grep"}, 
-        b = {ts.buffers, "buffers"}, 
-        h = {ts.help_tags, "help tags"}, 
-    }, 
-}
-wkmap(keymap_sets.telescope, {prefix = "<leader>"})
-
-
---------------------------- toggle terminal -----------------------------------
-local toggleterm_keys = require("toggleterm")
-keymap_sets.toggleterm = {
-    t = {
-        name = "toggle terminal", 
-        a = {toggleterm_keys.toggleA, "teminal in front of the windows"}, 
-        b = {toggleterm_keys.toggleB, "teminal at the right of the windows"}, 
-        c = {toggleterm_keys.toggleC, "teminal at the bottom of the windows"}, 
-        g = {toggleterm_keys.toggleG, "lazy git"}, 
-    }, 
-}
-wkmap(keymap_sets.toggleterm, {prefix = "<leader>"})
-
-
----------------------------lsp-----------------------------------
-keymap_sets.lsp_goto = {
-    g = {
-        r = {
-            "<cmd>Lspsaga finder ref<cr>", 
-            "peek reference"
-        }, 
-        h = {
-            "<cmd>Lspsaga hover_doc ++quiet<cr>", 
-            "peek hover"
-        }, 
-        d = {
-            "<cmd>Lspsaga goto_definition<cr>", 
-            "goto definition"
-        }, 
-        i = {
-            "<cmd>lua vim.lsp.buf.implementation()<cr>", 
-            "get implementation"
-        }, 
-        p = {
-            "<cmd>Lspsaga diagnostic_jump_next<cr>", 
-            "diagnostic goto prev"
-        }, 
-        n = {
-            "<cmd>Lspsaga diagnostic_jump_next<cr>", 
-            "diagnostic goto next"
-        }, 
-        t = {
-            "<cmd>Lspsaga goto_type_definition<cr>", 
-            "goto type definition"
-        }, 
-    }, 
-    ["<leader>"] = {
-        s = {
-            name = "show diagnostic", 
-            l = {
-                "<cmd>Lspsaga show_line_diagnostics ++unfocus<cr>", 
-                "show line diagnostics"
-            }, 
-            c = {
-                "<cmd>Lspsaga show_cursor_diagnostics ++unfocus<cr>", 
-                "show cursor diagnostics"
-            }, 
-            o = {
-                "<cmd>Lspsaga outline<cr>", "outline"
-            }, 
-        }, 
-        c = {
-            name = "code action", 
-            a = {
-                "<cmd>Lspsaga code_action<cr>", 
-                "code action"
-            }
-        }, 
-        r = {
-            name = "rename / relative number", 
-            r = {"<cmd>Lspsaga rename ++project<cr>", "rename the variable"}, 
-        }, 
-        ["="] = {
-            "<cmd>lua vim.lsp.buf.formatting()<cr>", "code formatting"
-        }, 
-    }, 
-}
-wkmap(keymap_sets.lsp_goto)
-
----------------- nvim-tree -------------------------
-pluginKeys.nvimTree = {
-     -- v分屏打开文件
-  { key = "v", action = "vsplit" },
-  -- h分屏打开文件
-  { key = "h", action = "split" },
-}
-
-------------- nvim-cmp 自动补全 --------------------
-pluginKeys.cmp = function(cmp)
-  return {
-    ['<CR>'] = cmp.mapping.confirm({
-                  select = true ,
-                  behavior = cmp.ConfirmBehavior.Replace
-                }),
-    ['<c-p>'] = cmp.mapping.select_prev_item(),
-    ['<c-n>'] = cmp.mapping.select_next_item(),
-  }
-end
-
-return pluginKeys
