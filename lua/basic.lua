@@ -1,17 +1,18 @@
-inifile = require('inifile')
-ini_conf_path = vim.fn.stdpath("config") .. "/lua/config/.conf.ini"
-ini_conf = inifile.parse(ini_conf_path)
-local conf_funcs = require("config/funcs")
-
--- 在nvim退出时, 自动保存ini_conf配置
-vim.api.nvim_create_augroup("exitCheck", {clear = true})
-vim.api.nvim_create_autocmd("VimLeavePre", {
-    group = "exitCheck",
-    command = "lua save_iniconf()",
-})
-
+-- inifile = require('inifile')
+-- ini_conf_path = vim.fn.stdpath("config") .. "/lua/config/.conf.ini"
+-- ini_conf = inifile.parse(ini_conf_path)
+-- local conf_funcs = require("config/funcs")
+-- 
+-- -- 在nvim退出时, 自动保存ini_conf配置
+-- vim.api.nvim_create_augroup("exitCheck", {clear = true})
+-- vim.api.nvim_create_autocmd("VimLeavePre", {
+--     group = "exitCheck",
+--     command = "lua save_iniconf()",
+-- })
+-- 部分电脑无法使用 luainstall, 所以不适用文件来解析 config
 -- background
-vim.go.background = ini_conf['global']['background']
+vim.go.background = "dark"
+-- vim.go.background = ini_conf['global']['background']
 
 -- utf8
 vim.g.encoding = "UTF-8"
@@ -21,22 +22,30 @@ vim.o.scroll = 9
 vim.o.scrolloff = 8
 vim.o.sidescrolloff = 8
 -- 使用相对行号
---vim.wo.number = true
-vim.wo.relativenumber = true
+vim.wo.number = true
+-- vim.wo.relativenumber = true
 -- 高亮所在行
 vim.wo.cursorline = true
 -- 显示左侧图标指示列
 vim.wo.signcolumn = "yes"
 -- 右侧参考线，超过表示代码太长了，考虑换行
-vim.wo.colorcolumn = 80
+vim.wo.colorcolumn = 120
 -- 缩进4个空格等于一个Tab
-vim.o.tabstop = ini_conf['global']['tab']
-vim.bo.tabstop = ini_conf['global']['tab']
-vim.o.softtabstop = ini_conf['global']['tab']
-vim.o.shiftround = true
+vim.o.tabstop = 4
+vim.bo.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftround = 4
 -- >> << 时移动长度
-vim.o.shiftwidth = ini_conf['global']['tab']
-vim.bo.shiftwidth = ini_conf['global']['tab']
+vim.o.shiftwidth = 4
+vim.bo.shiftwidth = 4
+-- -- 缩进4个空格等于一个Tab
+-- vim.o.tabstop = ini_conf['global']['tab']
+-- vim.bo.tabstop = ini_conf['global']['tab']
+-- vim.o.softtabstop = ini_conf['global']['tab']
+-- vim.o.shiftround = true
+-- -- >> << 时移动长度
+-- vim.o.shiftwidth = ini_conf['global']['tab']
+-- vim.bo.shiftwidth = ini_conf['global']['tab']
 -- 空格替代tab
 vim.o.expandtab = true
 vim.bo.expandtab = true
