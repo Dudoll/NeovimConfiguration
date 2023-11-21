@@ -107,10 +107,10 @@ return require('packer').startup({
         }
 
         -- 实现在<c-d/u> zz 等 scroll 操作时的动画
-        use {
-          'declancm/cinnamon.nvim',
-          config = function() require('cinnamon').setup() end
-        }
+        -- use {
+          -- 'declancm/cinnamon.nvim',
+          -- config = function() require('cinnamon').setup() end
+        -- }
         -- use {
             -- 'karb94/neoscroll.nvim', 
             -- config = function()
@@ -143,23 +143,30 @@ return require('packer').startup({
         }
         -- UI 增强
         use("onsails/lspkind-nvim")
-        use {
-            "glepnir/lspsaga.nvim", 
-            -- opt = true,
-            -- branch = "main",
-            -- event = "LspAttach", 
+        use ({
+            'nvimdev/lspsaga.nvim',
+            after = 'nvim-lspconfig',
             config = function()
-                require("lspsaga").setup({})
+                require('lspsaga').setup({})
             end,
-            -- after = {
-                -- "neovim/nvim-lspconfig", 
-            -- }, 
-            requires = {
-                {"nvim-tree/nvim-web-devicons"},
-                --Please make sure you install markdown and markdown_inline parser
-                {"nvim-treesitter/nvim-treesitter"}
-            }
-        }
+        })
+        -- use {
+        --     "glepnir/lspsaga.nvim", 
+        --     -- opt = true,
+        --     -- branch = "main",
+        --     -- event = "LspAttach", 
+        --     config = function()
+        --         -- require("lspsaga").setup({})
+        --     end,
+        --     -- after = {
+        --         -- "neovim/nvim-lspconfig", 
+        --     -- }, 
+        --     requires = {
+        --         {"nvim-tree/nvim-web-devicons"},
+        --         --Please make sure you install markdown and markdown_inline parser
+        --         {"nvim-treesitter/nvim-treesitter"}
+        --     }
+        -- }
 
         -- 代码格式化
         use("mhartington/formatter.nvim")
