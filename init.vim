@@ -1,7 +1,7 @@
 " use the .vimrc
 set runtimepath^=~/.config/nvim/ runtimepath+=~/.config/nvim/after
 let &packpath=&runtimepath
-source ~/.config/nvim/.vimrc
+" source ~/.config/nvim/.vimrc
 
 set nu
 
@@ -15,7 +15,8 @@ lua require('plugin-config/nvim-tree')
 lua require('plugin-config/bufferline')
 lua require('plugin-config/nvim-treesitter')
 lua require('plugin-config/lualine')
-lua require('plugin-config/indent-blankline')
+" below is indent-blankine
+lua require('ibl').setup()
 " lua require('plugin-config/project')
 lua require('plugin-config/ts-rainbow')
 lua require('plugin-config/toggleterm')
@@ -31,8 +32,9 @@ lua require('plugin-config/deadcolumn')
 lua require('lsp/setup')
 " 代码补全配置
 lua require('lsp/nvim-cmp')
-lua require("lsp/ui")
-lua require("lsp/lspsaga")
+lua require('lsp/ui')
+" 直接使用 lspsaga 默认配置
+" lua require("lsp/lspsaga")
 " lua require("lsp/null-ls")
 
 " set laststatus=0
