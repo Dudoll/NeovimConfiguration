@@ -21,17 +21,20 @@ keymap_sets.normal = {
     ["<c-y>"] = {"mZgg9999yy'Z<cmd>delmarks Z<cr>", "copy this file"}, 
     
     -- bufferline Plugin 标签栏
-    ["<c-h>"] = {"<cmd>BufferLineCyclePrev<cr>", "prev bufferline"}, 
-    ["<c-l>"] = {"<cmd>BufferLineCycleNext<cr>", "next bufferline"}, 
+    ["<a-h>"] = {"<cmd>BufferLineCyclePrev<cr>", "prev bufferline"}, 
+    ["<a-l>"] = {"<cmd>BufferLineCycleNext<cr>", "next bufferline"}, 
 
     -- Nvimtree Plugin 左侧的目录树
     ["<a-m>"] = {"<cmd>NvimTreeToggle<cr>", "nvim tree"}, 
 
     -- windows 之间跳转
-    ["<a-h>"] = {"<c-w>h", "left windows"}, 
-    ["<a-j>"] = {"<c-w>j", "bottom windows"}, 
-    ["<a-k>"] = {"<c-w>k", "up windows"}, 
-    ["<a-l>"] = {"<c-w>l", "right windows"}, 
+    ["<c-h>"] = {"<c-w>h", "left windows"}, 
+    ["<c-j>"] = {"<c-w>j", "bottom windows"}, 
+    ["<c-k>"] = {"<c-w>k", "up windows"}, 
+    ["<c-l>"] = {"<c-w>l", "right windows"}, 
+
+    ["<c-d>"] = {"5j"},
+    ["<c-u>"] = {"5k"},
 }
 wkmap(keymap_sets.normal, {mode = "n"})
 wkmap(keymap_sets.normal, {mode = "v"})
@@ -39,6 +42,8 @@ wkmap(keymap_sets.normal, {mode = "v"})
 -- insert mode
 keymap_sets.insert = {
     ["<c-d>"] = {"<delete>", "delete"}, 
+    ["<c-f>"] = {"<Right>", "Right"}, 
+    ["<c-b>"] = {"<Left>", "Left"}, 
     ["<c-a>"] = {"<esc>I", "the head of the line"}, 
     ["<c-e>"] = {"<esc>A", "the tail of the line"}, 
     k = {
@@ -90,22 +95,22 @@ keymap_sets.leader_insert =  {
 wkmap(keymap_sets.leader_insert, {prefix = "<leader>", mode = "i"})
 
 --------------------- cinnamon 平滑 scroll------------------------
-keymap_sets.cinnamon = {
-    -- zz/zt/zb 平滑 scroll
-    z = {
-      z = {"<Cmd>lua Scroll('zz', 0, 1)<CR>", "center this line"}, 
-      t = {"<Cmd>lua Scroll('zt', 0, 1)<CR>", "top this line"}, 
-      b = {"<Cmd>lua Scroll('zb', 0, 1)<CR>", "bottom this line"}, 
-    }, 
-
-    -- n/N for search 平滑 scroll
-    -- n = {"<Cmd>lua Scroll('n', 1)<CR>", "next"}, 
-    -- N = {"<Cmd>lua Scroll('N', 1)<CR>", "prev"}, 
-
-    k = {"<Cmd>lua Scroll('k', 0, 1)<CR>", "prev line"}, 
-    j = {"<Cmd>lua Scroll('j', 0, 1)<CR>", "next line"}, 
-}
-wkmap(keymap_sets.cinnamon)
+-- keymap_sets.cinnamon = {
+--     -- zz/zt/zb 平滑 scroll
+--     z = {
+--       z = {"<Cmd>lua Scroll('zz', 0, 1)<CR>", "center this line"}, 
+--       t = {"<Cmd>lua Scroll('zt', 0, 1)<CR>", "top this line"}, 
+--       b = {"<Cmd>lua Scroll('zb', 0, 1)<CR>", "bottom this line"}, 
+--     }, 
+-- 
+--     -- n/N for search 平滑 scroll
+--     -- n = {"<Cmd>lua Scroll('n', 1)<CR>", "next"}, 
+--     -- N = {"<Cmd>lua Scroll('N', 1)<CR>", "prev"}, 
+-- 
+--     k = {"<Cmd>lua Scroll('k', 0, 1)<CR>", "prev line"}, 
+--     j = {"<Cmd>lua Scroll('j', 0, 1)<CR>", "next line"}, 
+-- }
+-- wkmap(keymap_sets.cinnamon)
 
 
 --------------------- hop (overide f/F/t/T) -----------------------
@@ -282,7 +287,7 @@ wkmap(keymap_sets.toggleterm, {prefix = "<leader>"})
 keymap_sets.lsp_goto = {
     g = {
         r = {
-            "<cmd>Lspsaga lsp_finder<cr>", 
+            "<cmd>Lspsaga finder ref<cr>", 
             "peek reference"
         }, 
         h = {
