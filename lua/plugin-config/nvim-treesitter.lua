@@ -1,34 +1,35 @@
-require("nvim-treesitter.install").prefer_git = true
-require'nvim-treesitter.configs'.setup {
-  -- 安装 language parser
-  -- :TSInstallInfo 命令查看支持的语言
-  ensure_installed = {"vim", "lua", "c", "cpp", 
-        "python", "json", "java", "markdown", "markdown_inline"},
-  -- 启用代码高亮功能
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false, 
-    disable = {"*"}, 
+-- :h mason-default-settings
+-- require("mason").setup({
+--   ui = {
+--     icons = {
+--       package_installed = "✓",
+--       package_pending = "➜",
+--       package_uninstalled = "✗",
+--     },
+--   },
+-- })
 
-  },
-  -- 启用增量选择
-  -- incremental_selection = {
-  --   enable = true,
-  --   keymaps = {
-  --     init_selection = '<CR>',
-  --     node_incremental = '<CR>',
-  --     node_decremental = '<BS>',
-  --     scope_incremental = '<TAB>',
-  --   }
-  -- },
-  -- 启用基于Treesitter的代码格式化(=) . NOTE: This is an experimental feature.
-  -- indent = {
-  --   enable = true
-  -- }
-}
--- 开启 Folding
-vim.wo.foldmethod = 'expr'
-vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
--- 默认不要折叠
--- https://stackoverflow.com/questions/8316139/how-to-set-the-default-to-unfolded-when-you-open-a-file
-vim.wo.foldlevel = 99
+-- mason-lspconfig uses the `lspconfig` server names in the APIs it exposes - not `mason.nvim` package names
+-- https://github.com/williamboman/mason-lspconfig.nvim/blob/main/doc/server-mapping.md
+-- require("mason-lspconfig").setup({
+--   -- 确保安装，根据需要填写
+--     ensure_installed = {
+--         "clangd", "cmake"
+--     },
+-- })
+
+-- require("mason-lspconfig").setup_handlers {
+--         -- The first entry (without a key) will be the default handler
+--         -- and will be called for each installed server that doesn't have
+--         -- a dedicated handler.
+--         function (server_name) -- default handler (optional)
+--             require("lspconfig")[server_name].setup {}
+--         end,
+--         -- Next, you can provide a dedicated handler for specific servers.
+--         -- For example, a handler override for the `rust_analyzer`:
+--         -- ["rust_analyzer"] = function ()
+--             -- require("rust-tools").setup {}
+--         -- end
+-- }
+-- 部分网络无法通过 mason 来配置 server，所以直接采用手工配置的方式
+require("lspconfig").clangd.setup{}
