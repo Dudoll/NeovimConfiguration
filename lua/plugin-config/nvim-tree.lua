@@ -101,7 +101,7 @@ require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
   hijack_cursor = false,
   hijack_netrw = true,
   hijack_unnamed_buffer_when_opening = false,
-  on_attach = on_attach, 
+  on_attach = on_attach,
   -- ignore_buffer_on_setup = false,
   -- open_on_setup = false,
   -- open_on_setup_file = false,
@@ -180,7 +180,7 @@ require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
     auto_open = true,
   },
   update_focused_file = {
-    enable = false,
+    enable = true,
     update_cwd = false,
     ignore_list = {},
   },
