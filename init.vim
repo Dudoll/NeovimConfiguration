@@ -27,6 +27,7 @@ lua require('plugin-config/hop')
 lua require('plugin-config/surround')
 lua require('plugin-config/marks')
 lua require('plugin-config/deadcolumn')
+lua require('plugin-config/cscope_map')
 
 "   lsp
 lua require('lsp/setup')
