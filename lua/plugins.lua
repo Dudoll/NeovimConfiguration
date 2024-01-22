@@ -2,9 +2,9 @@
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-	fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})	--默认地址
-	-- fn.system({'git', 'clone', '--depth', '1', 'https://codechina.csdn.net/mirrors/wbthomason/packer.nvim.git', install_path})	--csdn加速镜像
-	vim.cmd 'packadd packer.nvim'
+        fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})  --默认地址
+        -- fn.system({'git', 'clone', '--depth', '1', 'https://codechina.csdn.net/mirrors/wbthomason/packer.nvim.git', install_path})   --csdn加速镜像
+        vim.cmd 'packadd packer.nvim'
 end
 
 -- Only required if you have packer configured as `opt`
@@ -16,7 +16,7 @@ return require('packer').startup({
         -- theme
         use {
             -- "ellisonleao/gruvbox.nvim",
-            "morhetz/gruvbox", 
+            "morhetz/gruvbox",
             requires = {"rktjmp/lush.nvim"}
         }
 
@@ -28,14 +28,14 @@ return require('packer').startup({
 
         -- 标签栏
         use {
-            'akinsho/bufferline.nvim', 
+            'akinsho/bufferline.nvim',
             requires = 'kyazdani42/nvim-web-devicons'
         }
 
         -- 语法高亮
-        use { 
+        use {
             'nvim-treesitter/nvim-treesitter',
-            run = ':TSUpdate' 
+            run = ':TSUpdate'
         }
         use("p00f/nvim-ts-rainbow")
 
@@ -112,7 +112,7 @@ return require('packer').startup({
           -- config = function() require('cinnamon').setup() end
         -- }
         -- use {
-            -- 'karb94/neoscroll.nvim', 
+            -- 'karb94/neoscroll.nvim',
             -- config = function()
                 -- require('neoscroll').setup()
             -- end
@@ -121,6 +121,16 @@ return require('packer').startup({
         -- 代码长度超出范围预警线
         use 'Bekaboo/deadcolumn.nvim'
 
+        -- cscope
+        use {"dhananjaylatkar/cscope_maps.nvim",
+            requires = {
+                "folke/which-key.nvim", -- optional [for whichkey hints]
+                "nvim-telescope/telescope.nvim", -- optional [for picker="telescope"]
+                "ibhagwan/fzf-lua", -- optional [for picker="fzf-lua"]
+                "nvim-tree/nvim-web-devicons", -- optional [for devicons in telescope or fzf]
+            },
+        }
+
         -- -----------------------lsp------------------------
         use({ "williamboman/mason.nvim" })
         use({ "williamboman/mason-lspconfig.nvim" })
@@ -128,17 +138,17 @@ return require('packer').startup({
 
         -- 代码自动补全
         use {
-            'hrsh7th/nvim-cmp', 
+            'hrsh7th/nvim-cmp',
             requires = {
-                'hrsh7th/cmp-nvim-lsp', 
-                'hrsh7th/cmp-buffer', 
+                'hrsh7th/cmp-nvim-lsp',
+                'hrsh7th/cmp-buffer',
                 'hrsh7th/cmp-path',      -- { name = 'path' }
                 'hrsh7th/cmp-cmdline',   -- { name = 'cmdline' }
                 'hrsh7th/cmp-vsnip',     -- { name = 'vsnip' }
-                'hrsh7th/vim-vsnip', 
+                'hrsh7th/vim-vsnip',
                 "ray-x/cmp-treesitter",
                 -- vsnip
-                'rafamadriz/friendly-snippets', 
+                'rafamadriz/friendly-snippets',
             }
         }
         -- UI 增强
@@ -151,16 +161,16 @@ return require('packer').startup({
             end,
         })
         -- use {
-        --     "glepnir/lspsaga.nvim", 
+        --     "glepnir/lspsaga.nvim",
         --     -- opt = true,
         --     -- branch = "main",
-        --     -- event = "LspAttach", 
+        --     -- event = "LspAttach",
         --     config = function()
         --         -- require("lspsaga").setup({})
         --     end,
         --     -- after = {
-        --         -- "neovim/nvim-lspconfig", 
-        --     -- }, 
+        --         -- "neovim/nvim-lspconfig",
+        --     -- },
         --     requires = {
         --         {"nvim-tree/nvim-web-devicons"},
         --         --Please make sure you install markdown and markdown_inline parser
@@ -170,13 +180,13 @@ return require('packer').startup({
 
         -- 代码格式化
         use("mhartington/formatter.nvim")
-        use({ "jose-elias-alvarez/null-ls.nvim", 
-            requires = "nvim-lua/plenary.nvim" 
+        use({ "jose-elias-alvarez/null-ls.nvim",
+            requires = "nvim-lua/plenary.nvim"
         })
 
         -- TypeScript 增强
-        use({ "jose-elias-alvarez/nvim-lsp-ts-utils", 
-            requires = "nvim-lua/plenary.nvim" 
+        use({ "jose-elias-alvarez/nvim-lsp-ts-utils",
+            requires = "nvim-lua/plenary.nvim"
         })
         -- Lua 增强
         use("folke/lua-dev.nvim")
@@ -184,4 +194,4 @@ return require('packer').startup({
         use("b0o/schemastore.nvim")
 
     end,
-}) 
+})
