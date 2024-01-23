@@ -33,8 +33,8 @@ keymap_sets.normal = {
     ["<c-k>"] = {"<c-w>k", "up windows"},
     ["<c-l>"] = {"<c-w>l", "right windows"},
 
-    ["<c-d>"] = {"5j"},
-    ["<c-u>"] = {"5k"},
+    ["<c-d>"] = {"5j", "5 lines down"},
+    ["<c-u>"] = {"5k", "5 lines up"},
 }
 wkmap(keymap_sets.normal, {mode = "n"})
 wkmap(keymap_sets.normal, {mode = "v"})
