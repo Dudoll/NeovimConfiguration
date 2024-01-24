@@ -273,14 +273,22 @@ wkmap(keymap_sets.telescope, {prefix = "<leader>"})
 
 
 --------------------------- toggle terminal -----------------------------------
-local toggleterm_keys = require("toggleterm")
+local Terminal  = require('toggleterm.terminal').Terminal
+local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "tab" })
+
+function _lazygit_toggle()
+  lazygit:toggle()
+end
+
 keymap_sets.toggleterm = {
     t = {
         name = "toggle terminal",
-        a = {toggleterm_keys.toggleA, "teminal in front of the windows"},
-        b = {toggleterm_keys.toggleB, "teminal at the right of the windows"},
-        c = {toggleterm_keys.toggleC, "teminal at the bottom of the windows"},
-        g = {toggleterm_keys.toggleG, "lazy git"},
+        a = {"<cmd>ToggleTerm direction=float<cr>", "teminal in front of the windows"},
+        b = {"<cmd>ToggleTerm direction=horizontal<cr>", "teminal at the bottom of the windows"},
+        v = {"<cmd>ToggleTerm direction=vertical<cr>", "teminal at the vertical(right) of the windows"},
+        t = {"<cmd>ToggleTerm direction=tab<cr>", "teminal at the tab of the windows"},
+        -- need to download lazygit
+        g = {"<cmd>lua _lazygit_toggle()<cr>", "lazygit"},
     },
 }
 wkmap(keymap_sets.toggleterm, {prefix = "<leader>"})
