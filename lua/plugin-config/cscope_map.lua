@@ -7,9 +7,9 @@ local opts = {
   -- cscope related defaults
   cscope = {
     -- location of cscope db file
-    db_file = [
+    db_file = {
       "./cscope.out",
-    ]
+    }
     -- cscope executable
     exec = "gtags-cscope", -- "cscope" or "gtags-cscope"
     -- choose your fav picker
