@@ -37,7 +37,24 @@ return require('packer').startup({
             'nvim-treesitter/nvim-treesitter',
             run = ':TSUpdate'
         }
-        use("p00f/nvim-ts-rainbow")
+        use {
+            'nvim-treesitter/nvim-treesitter-refactor',
+            requires = 'nvim-treesitter/nvim-treesitter',
+        }
+
+        use {
+            'yamatsum/nvim-cursorline',
+            config = function()
+                require('nvim-cursorling').setup()
+            end
+        }
+
+        use{
+            "p00f/nvim-ts-rainbow",
+            config = function()
+                require('nvim-ts-rainbow').setup()
+            end
+        }
 
         -- 状态栏
         use {
