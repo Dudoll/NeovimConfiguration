@@ -11,7 +11,7 @@ local opts = {
       "./cscope.out",
     },
     -- cscope executable
-    exec = "gtags-cscope", -- "cscope" or "gtags-cscope"
+    exec = "cscope", -- "cscope" or "gtags-cscope"
     -- choose your fav picker
     picker = "telescope", -- "telescope", "fzf-lua" or "quickfix"
     -- size of quickfix window
