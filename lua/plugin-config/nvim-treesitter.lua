@@ -1,35 +1,50 @@
--- :h mason-default-settings
--- require("mason").setup({
---   ui = {
---     icons = {
---       package_installed = "✓",
---       package_pending = "➜",
---       package_uninstalled = "✗",
---     },
---   },
--- })
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all" (the five listed parsers should always be installed)
+  ensure_installed = "all",
 
--- mason-lspconfig uses the `lspconfig` server names in the APIs it exposes - not `mason.nvim` package names
--- https://github.com/williamboman/mason-lspconfig.nvim/blob/main/doc/server-mapping.md
--- require("mason-lspconfig").setup({
---   -- 确保安装，根据需要填写
---     ensure_installed = {
---         "clangd", "cmake"
---     },
--- })
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = true,
 
--- require("mason-lspconfig").setup_handlers {
---         -- The first entry (without a key) will be the default handler
---         -- and will be called for each installed server that doesn't have
---         -- a dedicated handler.
---         function (server_name) -- default handler (optional)
---             require("lspconfig")[server_name].setup {}
---         end,
---         -- Next, you can provide a dedicated handler for specific servers.
---         -- For example, a handler override for the `rust_analyzer`:
---         -- ["rust_analyzer"] = function ()
---             -- require("rust-tools").setup {}
---         -- end
--- }
--- 部分网络无法通过 mason 来配置 server，所以直接采用手工配置的方式
-require("lspconfig").clangd.setup{}
+  -- Automatically install missing parsers when entering buffer
+  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+  auto_install = true,
+
+  -- List of parsers to ignore installing (or "all")
+  -- ignore_install = { "javascript" },
+
+  ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
+  -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+
+  highlight = {
+    enable = true,
+
+    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
+    -- the name of the parser)
+    -- list of language that will be disabled
+    -- disable = { "c", "rust" },
+    -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
+    disable = function(lang, buf)
+        local max_filesize = 100 * 1024 -- 100 KB
+        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+        if ok and stats and stats.size > max_filesize then
+            return true
+        end
+    end,
+
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+  refactor = {
+      -- highlight_current_scope = { enable = true },
+      highlight_definitions = {
+          enable = true,
+          -- Set to false if you have an `updatetime` of ~100.
+          clear_on_cursor_move = true,
+      },
+  },
+}
