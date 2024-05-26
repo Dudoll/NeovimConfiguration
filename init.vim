@@ -18,7 +18,6 @@ lua require('plugin-config/lualine')
 " below is indent-blankine
 lua require('ibl').setup()
 " lua require('plugin-config/project')
-lua require('plugin-config/ts-rainbow')
 lua require('plugin-config/toggleterm')
 lua require('plugin-config/gitsigns')
 lua require('plugin-config/autopair')

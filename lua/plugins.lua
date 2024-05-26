@@ -45,15 +45,12 @@ return require('packer').startup({
         use {
             'yamatsum/nvim-cursorline',
             config = function()
-                require('nvim-cursorling').setup()
+                require('nvim-cursorline').setup()
             end
         }
 
         use{
-            "p00f/nvim-ts-rainbow",
-            config = function()
-                require('nvim-ts-rainbow').setup()
-            end
+            "HiPhish/rainbow-delimiters.nvim"
         }
 
         -- 状态栏
