@@ -29,12 +29,12 @@ vim.wo.cursorline = true
 -- 显示左侧图标指示列
 vim.wo.signcolumn = "yes"
 -- 右侧参考线，超过表示代码太长了，考虑换行
-vim.wo.colorcolumn = 120
+vim.wo.colorcolumn = "80,120"
 -- 缩进4个空格等于一个Tab
 vim.o.tabstop = 4
 vim.bo.tabstop = 4
 vim.o.softtabstop = 4
-vim.o.shiftround = 4
+vim.o.shiftround = true
 -- >> << 时移动长度
 vim.o.shiftwidth = 4
 vim.bo.shiftwidth = 4
@@ -47,8 +47,8 @@ vim.bo.shiftwidth = 4
 -- vim.o.shiftwidth = ini_conf['global']['tab']
 -- vim.bo.shiftwidth = ini_conf['global']['tab']
 -- 空格替代tab
-vim.o.expandtab = true
-vim.bo.expandtab = true
+vim.o.expandtab = false
+vim.bo.expandtab = false
 -- 新行对齐当前行
 vim.o.autoindent = true
 vim.bo.autoindent = true
