@@ -19,6 +19,8 @@ return require('packer').startup({
             "morhetz/gruvbox",
             requires = {"rktjmp/lush.nvim"}
         }
+        -- theme
+        use { "catppuccin/nvim", as = "catppuccin" }
 
         -- 目录树
         use {
