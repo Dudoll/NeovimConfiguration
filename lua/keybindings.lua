@@ -54,9 +54,6 @@ wkmap(keymap_sets.insert, {mode = "i"});
 
 -- normal mode with <leader>
 keymap_sets.leader_normal =  {
-    r = {
-        n = {":set rnu!<cr>", "change rnu"},
-    },
     q = {conf_funcs.toggle_background, "toggle background color"},
     b = {"<cmd>bd<cr>", "close one buffer"},
     c = {
@@ -349,7 +346,7 @@ keymap_sets.lsp_goto = {
             }
         },
         r = {
-            name = "rename / relative number",
+            name = "rename",
             r = {"<cmd>Lspsaga rename ++project<cr>", "rename the variable"},
         },
         ["="] = {
