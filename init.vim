@@ -7,8 +7,10 @@ set nu
 
 lua require('plugins')
 
-colorscheme gruvbox
-let g:gruvbox_contrast_dark='hard'
+" colorscheme gruvbox
+" let g:gruvbox_contrast_dark='hard'
+
+colorscheme catppuccin-mocha " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 
 " plugins
 lua require('plugin-config/nvim-tree')
