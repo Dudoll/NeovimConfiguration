@@ -19,7 +19,7 @@ local opts = {
     -- position of quickfix window
     qf_window_pos = "bottom", -- "bottom", "right", "left" or "top"
     -- "true" does not open picker for single result, just JUMP
-    skip_picker_for_single_result = false, -- "false" or "true"
+    skip_picker_for_single_result = true, -- "false" or "true"
     -- these args are directly passed to "cscope -f <db_file> <args>"
     db_build_cmd_args = { "-bqkv" },
     -- statusline indicator, default is cscope executable
