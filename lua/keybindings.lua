@@ -10,90 +10,92 @@ local pluginKeys = {}
 
 ------- 利用 which-key 实现快捷键 ---------
 local wkmap = require("which-key").register
+local wkadd = require("which-key").add
 local keymap_sets = {}
 local conf_funcs = require("config/funcs")
 
 -- normal mode
 keymap_sets.normal = {
-    H = {"^", "soft row head"},
-    L = {"$", "row tail"},
-    ["<c-e>"] = {"%", "surround pair"},
-    ["<c-y>"] = {"mZgg9999yy'Z<cmd>delmarks Z<cr>", "copy this file"},
+	mode = {"n", "v"},
+	{"H", "^", desc = "soft row head"},
+	{"L", "$", desc = "row tail"},
+    {"<c-e>", "%", desc = "surround pair"},
+    {"<c-y>", "mZgg9999yy'Z<cmd>delmarks Z<cr>", desc = "copy this file"},
 
     -- bufferline Plugin 标签栏
-    ["<a-h>"] = {"<cmd>BufferLineCyclePrev<cr>", "prev bufferline"},
-    ["<a-l>"] = {"<cmd>BufferLineCycleNext<cr>", "next bufferline"},
+    {"<a-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "prev bufferline", group = "bufferline"},
+    {"<a-l>", "<cmd>BufferLineCycleNext<cr>", desc = "next bufferline", group = "bufferline"},
 
     -- Nvimtree Plugin 左侧的目录树
-    ["<a-m>"] = {"<cmd>NvimTreeToggle<cr>", "nvim tree"},
+    {"<a-m>", "<cmd>NvimTreeToggle<cr>", desc = "nvim tree"},
 
     -- windows 之间跳转
-    ["<c-h>"] = {"<c-w>h", "left windows"},
-    ["<c-j>"] = {"<c-w>j", "bottom windows"},
-    ["<c-k>"] = {"<c-w>k", "up windows"},
-    ["<c-l>"] = {"<c-w>l", "right windows"},
+    {"<c-h>", "<c-w>h", desc = "left windows"},
+    {"<c-j>", "<c-w>j", desc = "bottom windows"},
+    {"<c-k>", "<c-w>k", desc = "up windows"},
+    {"<c-l>", "<c-w>l", desc = "right windows"},
 
-    ["<c-d>"] = {"5j", "5 lines down"},
-    ["<c-u>"] = {"5k", "5 lines up"},
+    {"<c-d>", "5j", desc = "5 lines down"},
+    {"<c-u>", "5k", desc = "5 lines up"},
 }
-wkmap(keymap_sets.normal, {mode = "n"})
-wkmap(keymap_sets.normal, {mode = "v"})
+wkadd(keymap_sets.normal)
 
 -- insert mode
 keymap_sets.insert = {
-    ["<c-d>"] = {"<delete>", "delete"},
-    ["<c-f>"] = {"<Right>", "Right"},
-    ["<c-b>"] = {"<Left>", "Left"},
-    ["<c-a>"] = {"<esc>I", "the head of the line"},
-    ["<c-e>"] = {"<esc>A", "the tail of the line"},
-    k = {
-        j = {"<esc>", "normal mode"},
-    }
+    mode = {"i"},
+    {"<c-d>", "<delete>", desc = "delete"},
+    {"<c-f>", "<Right>", desc = "Right"},
+    {"<c-b>", "<Left>", desc = "Left"},
+    {"<c-a>", "<esc>I", desc = "the head of the line"},
+    {"<c-e>", "<esc>A", desc = "the tail of the line"},
+    {"kj", "<esc>", desc = "normal mode"},
 }
-wkmap(keymap_sets.insert, {mode = "i"});
+-- wkmap(keymap_sets.insert, {mode = "i"});
+wkadd(keymap_sets.insert)
 
 -- normal mode with <leader>
 keymap_sets.leader_normal =  {
-    q = {conf_funcs.toggle_background, "toggle background color"},
-    b = {"<cmd>bd<cr>", "close one buffer"},
-    c = {
-        b = {"<cmd>BufferLinePickClose<cr>", "close one buffer"}
-    },
-    g = {
-        u = {"gUw", "upper the word"},
-    },
+	mode = {"n"},
 
-    -- windows
-    w = {
-        -- 分屏
-        name = "windows",
-        v = {"<cmd>vsp<cr>", "v split the window"},
-        h = {"<cmd>sp<cr>", "split the window"},
-        c = {"<c-w>c", "close the windows"},
-        o = {"<c-w>o", "only save the current window"},
+	{	
+		"<leader>q", 
+		conf_funcs.toggle_background(),
+		desc = "toggle background color" },
 
-        -- 屏幕 resize
-        [">"] = {"<cmd>vertical resize +20<cr>", "vertical resize +20"},
-        ["<"] = {"<cmd>vertical resize -20<CR>", "vertical resize -20"},
-        ["="] = {"<c-w>=", ""},
-        j = {"<cmd>resize +10<CR>", "horizontal resite +10"},
-        k = {"<cmd>resize -10<CR>", "horizontal resite -10"},
-    },
+	{ "<leader>b", "<cmd>bd<cr>", desc = "close one buffer" , group = "bufferline"},
+	{ "<leader>cb", "<cmd>BufferLinePickClose<cr>", desc = "close one buffer" , group = "bufferline"},
+
+	-- windows
+	{ "<leader>w", group = "windows" },
+	{ "<leader>w=", "<c-w>=", desc = "", group = "windows"},
+	{ "<leader>wc", "<c-w>c", desc = "close the windows", group = "windows" },
+	{ "<leader>wh", "<cmd>sp<cr>", desc = "split the window", group = "windows" },
+	{ "<leader>wo", "<c-w>o", desc = "only save the current window", group = "windows" },
+	{ "<leader>wv", "<cmd>vsp<cr>", desc = "v split the window", group = "windows" },
+	{ "<leader>wj", "<cmd>resize +10<CR>", desc = "horizontal resite +10", group = "windows" },
+	{ "<leader>wk", "<cmd>resize -10<CR>", desc = "horizontal resite -10", group = "windows" },
+	-- 屏幕 resize
+	{ "<leader>w<", "<cmd>vertical resize -20<CR>", desc = "vertical resize -20", group = "windows" },
+	{ "<leader>w>", "<cmd>vertical resize +20<cr>", desc = "vertical resize +20", group = "windows" },
+
+	{ "<leader>gu", "gUw", desc = "upper the word" },
 }
-wkmap(keymap_sets.leader_normal, {prefix = "<leader>"})
+wkadd(keymap_sets.leader_normal)
 
 -- insert mode with <leader>
-keymap_sets.leader_insert =  {
-    c = {"<esc>ciw", "ciw"},
-    a = {"<Left>", "move left"},
-    d = {"<Right>", "move right"},
-    s = {"<esc>S", "delete this row"},
-    e = {"=", "="},
-    r = {"->", "->"},
-    n = {"!=", "!="},
-}
-wkmap(keymap_sets.leader_insert, {prefix = "<leader>", mode = "i"})
+keymap_sets.leader_insert = {
+	mode = { "i" },
+	{ "<leader>a", "<Left>", desc = "move left" },
+	{ "<leader>d", "<Right>", desc = "move right" },
 
+	{ "<leader>c", "<esc>ciw", desc = "ciw" },
+	{ "<leader>s", "<esc>S", desc = "delete this row" },
+
+	{ "<leader>e", "=", desc = "=" },
+	{ "<leader>n", "!=", desc = "!=" },
+	{ "<leader>r", "->", desc = "->" },
+}
+wkadd(keymap_sets.leader_insert)
 --------------------- cinnamon 平滑 scroll------------------------
 -- keymap_sets.cinnamon = {
 --     -- zz/zt/zb 平滑 scroll
@@ -117,37 +119,28 @@ wkmap(keymap_sets.leader_insert, {prefix = "<leader>", mode = "i"})
 local hop = require("hop")
 local hop_direction = require("hop.hint").HintDirection
 keymap_sets.hop = {
-    f = {
+	mode = { "n", "o", "v" },
+	{	
+		"<leader>e", 
         function()
-            hop.hint_char1({
-                current_line_only = true,
-                direction = hop_direction.AFTER_CURSOR,
+            hop.hint_words({
+                -- hint_position = require'hop.hint'.HintPosition.END
             })
         end,
-        "find char in this line"},
-
-    F = {
+		desc = "find" 
+	},
+	{	
+		"F", 
         function()
             hop.hint_char1({
                 current_line_only = true,
                 direction = hop_direction.BEFORE_CURSOR,
             })
         end,
-        "find char in this line"
-    },
-
-    t = {
-        function()
-            hop.hint_char1({
-                direction = hop_direction.AFTER_CURSOR,
-                current_line_only = true,
-                hint_offset = -1
-            })
-        end,
-        "find after cursor"
-    },
-
-    T = {
+		desc = "find char in this line" 
+	},
+	{
+		"T", 
         function()
             hop.hint_char1({
                 direction = hop_direction.BEFORE_CURSOR,
@@ -155,119 +148,146 @@ keymap_sets.hop = {
                 hint_offset = 1
             })
         end,
-        "find before cursor"
-    },
-
-
-    ["<leader>e"] = {
+		desc = "find before cursor" 
+	},
+	{	
+		"f", 
         function()
-            hop.hint_words({
-                -- hint_position = require'hop.hint'.HintPosition.END
+            hop.hint_char1({
+                current_line_only = true,
+                direction = hop_direction.AFTER_CURSOR,
             })
         end,
-        "find"
-    },
+		desc = "find char in this line" 
+	},
+	{	
+		"t", 
+        function()
+            hop.hint_char1({
+                direction = hop_direction.AFTER_CURSOR,
+                current_line_only = true,
+                hint_offset = -1
+            })
+        end,
+		desc = "find after cursor" 
+	},
 }
-wkmap(keymap_sets.hop, {mode = {"n", "v", "o"}})
+wkadd(keymap_sets.hop)
 
 --------------------- vimtex -----------------------------
-wkmap( {
-        ['\\ll'] = {
-            "<cmd>VimtexCompile<cr>",
-            "tex compile"
-        }
-    },
-    {noremap = true}
-)
-wkmap( {
-        ['\\ll'] = {
-            "<cmd>VimtexCompile<cr>",
-            "tex compile"
-        },
-        ["\\lv"] = {
-            "<cmd>VimtexView<cr>",
-            "tex view"
-        }
-    },
-    {noremap = true}
-)
+-- wkmap( {
+--         ['\\ll'] = {
+--             "<cmd>VimtexCompile<cr>",
+--             "tex compile"
+--         }
+--     },
+--     {noremap = true}
+-- )
+-- wkmap( {
+--         ['\\ll'] = {
+--             "<cmd>VimtexCompile<cr>",
+--             "tex compile"
+--         },
+--         ["\\lv"] = {
+--             "<cmd>VimtexView<cr>",
+--             "tex view"
+--         }
+--     },
+--     {noremap = true}
+-- )
 
 -- 代码注释
 -- ctrl + /
-wkmap( {["<c-_>"] = {"gcc", "comment one line"}}, {noremap = false} )
-wkmap( {["<c-_>"] = {"gbc", "comment one block"}}, {mode = "v", noremap = false} )
+wkadd({ "<c-_>", "gcc", desc = "comment one line", remap = true })
+wkadd({ "<c-_>", "gbc", desc = "comment one block", mode = "v", remap = true })
 
 
 -------------------gitsigns------------------------------
 local gs = require("gitsigns")
 keymap_sets.gitsigns = {
-    g = {
-        name = "gitsigns",
-        j = {
-            conf_funcs.next_diff_in_file,
-            "next diff in this file"
-        },
-        k = {
-            conf_funcs.pre_diff_in_file,
-            "prev diff in this file"
-        },
-        s = {
+	{ "<leader>g", group = "gitsigns" },
+	{ 
+		"<leader>gD", 
+		gs.preview_hunk,
+		desc = "diff this ~" 
+	},
+	{ 
+		"<leader>gR", 
+		gs.reset_buffer,
+		desc = "reset buffer" 
+	},
+	{ 
+		"<leader>gS",
+		gs.stage_buffer,
+		desc = "sgate buffer" 
+	},
+	{ 
+		"<leader>gb", 
+		function() gs.blame_line({full = true}) end,
+		desc = "blame" 
+	},
+	{ 
+		"<leader>gd", 
+		gs.diffthis,
+		desc = "diff this" 
+	},
+	{ 
+		"<leader>gj", 
+		conf_funcs.next_diff_in_file,
+		desc = "next diff in this file" 
+	},
+	{ 
+		"<leader>gk", 
+		conf_funcs.pre_diff_in_file,
+		desc = "prev diff in this file" 
+	},
+	{ 
+		"<leader>gp", 
+		gs.preview_hunk,
+		desc = "preview hunk" 
+	},
+	{ 
+		"<leader>gr", 
+		"<cmd>Gitsigns reset_hunk<cr>", 
+		desc = "reset hunk" 
+	},
+	{ 
+		"<leader>gs", 
+		"<cmd>Gitsigns stage_hunk<cr>", 
+		desc = "stage hunk" 
+	},
 
-            "<cmd>Gitsigns stage_hunk<cr>", "stage hunk"
-        },
-        r = {
-
-            "<cmd>Gitsigns reset_hunk<cr>", "reset hunk"
-        },
-        S = {
-            gs.stage_buffer,
-            "sgate buffer"
-        },
-        u = {
-            gs.undo_stage_hunk,
-            "undo stage hunk"
-        },
-        R = {
-            gs.reset_buffer,
-            "reset buffer"
-        },
-        p = {
-            gs.preview_hunk,
-            "preview hunk"
-        },
-        b = {function() gs.blame_line({full = true}) end,
-            "blame"
-        },
-        d = {
-            gs.diffthis,
-            "diff this"
-        },
-        D = {
-            function() gs.diffthis(
-                "~") end, "diff this ~"
-        },
-        t = {
-            name = "toggle",
-            d = {gs.toggle_deleted, "toggle deleted"},
-            b = {gs.toggle_current_line_blame, "toggle current line blame"},
-        }
-    }
+	{ 
+		"<leader>gt", group = "toggle" 
+	},
+	{ 
+		"<leader>gtb", 
+		gs.toggle_current_line_blame,
+		desc = "toggle current line blame" 
+	},
+	{ 
+		"<leader>gtd", 
+		gs.toggle_deleted,
+		desc = "toggle deleted" 
+	},
+	{ 
+		"<leader>gu", 
+		gs.undo_stage_hunk,
+		desc = "undo stage hunk" 
+	},
 }
-wkmap(keymap_sets.gitsigns, {prefix = "<leader>"})
+wkadd(keymap_sets.gitsigns)
 
 --------------------------- telescope -----------------------------------
 local ts = require("telescope.builtin")
 keymap_sets.telescope = {
-    f = {
-        name = "telescope",
-        f = {ts.find_files, "find files"},
-        g = {ts.live_grep, "live grep"},
-        b = {ts.buffers, "buffers"},
-        h = {ts.help_tags, "help tags"},
-    },
+	{ "<leader>f", group = "telescope" },
+	{ "<leader>fb", ts.buffers, desc = "buffers" },
+	{ "<leader>ff", ts.find_files, desc = "find files" },
+	{ "<leader>fg", ts.live_grep, desc = "live grep" },
+	{ "<leader>fh", ts.help_tags, desc = "help tags" },
 }
-wkmap(keymap_sets.telescope, {prefix = "<leader>"})
-
+wkadd(keymap_sets.telescope)
 
 --------------------------- toggle terminal -----------------------------------
 local Terminal  = require('toggleterm.terminal').Terminal
@@ -278,83 +298,39 @@ function _lazygit_toggle()
 end
 
 keymap_sets.toggleterm = {
-    t = {
-        name = "toggle terminal",
-        a = {"<cmd>ToggleTerm direction=float<cr>", "teminal in front of the windows"},
-        b = {"<cmd>ToggleTerm direction=horizontal<cr>", "teminal at the bottom of the windows"},
-        v = {"<cmd>ToggleTerm direction=vertical<cr>", "teminal at the vertical(right) of the windows"},
-        t = {"<cmd>ToggleTerm direction=tab<cr>", "teminal at the tab of the windows"},
-        -- need to download lazygit
-        g = {"<cmd>lua _lazygit_toggle()<cr>", "lazygit"},
-    },
+	{ "<leader>t", group = "toggle terminal" },
+	{ "<leader>ta", "<cmd>ToggleTerm direction=float<cr>", desc = "teminal in front of the windows" },
+	{ "<leader>tb", "<cmd>ToggleTerm direction=horizontal<cr>", desc = "teminal at the bottom of the windows" },
+	{ "<leader>tg", "<cmd>lua _lazygit_toggle()<cr>", desc = "lazygit" },
+	{ "<leader>tt", "<cmd>ToggleTerm direction=tab<cr>", desc = "teminal at the tab of the windows" },
+	{ "<leader>tv", "<cmd>ToggleTerm direction=vertical<cr>", desc = "teminal at the vertical(right) of the windows" },
 }
-wkmap(keymap_sets.toggleterm, {prefix = "<leader>"})
-
+wkadd(keymap_sets.toggleterm)
 
 ---------------------------lsp-----------------------------------
 keymap_sets.lsp_goto = {
-    g = {
-        r = {
-            "<cmd>Lspsaga finder ref<cr>",
-            "peek reference"
-        },
-        h = {
-            "<cmd>Lspsaga hover_doc ++quiet<cr>",
-            "peek hover"
-        },
-        d = {
-            "<cmd>Lspsaga goto_definition<cr>",
-            "goto definition"
-        },
-        i = {
-            "<cmd>lua vim.lsp.buf.implementation()<cr>",
-            "get implementation"
-        },
-        p = {
-            "<cmd>Lspsaga diagnostic_jump_next<cr>",
-            "diagnostic goto prev"
-        },
-        n = {
-            "<cmd>Lspsaga diagnostic_jump_next<cr>",
-            "diagnostic goto next"
-        },
-        t = {
-            "<cmd>Lspsaga goto_type_definition<cr>",
-            "goto type definition"
-        },
-    },
-    ["<leader>"] = {
-        s = {
-            name = "show diagnostic",
-            l = {
-                "<cmd>Lspsaga show_line_diagnostics ++unfocus<cr>",
-                "show line diagnostics"
-            },
-            c = {
-                "<cmd>Lspsaga show_cursor_diagnostics ++unfocus<cr>",
-                "show cursor diagnostics"
-            },
-            o = {
-                "<cmd>Lspsaga outline<cr>", "outline"
-            },
-        },
-        c = {
-            name = "code action",
-            a = {
-                "<cmd>Lspsaga code_action<cr>",
-                "code action"
-            }
-        },
-        r = {
-            name = "rename",
-            r = {"<cmd>Lspsaga rename ++project<cr>", "rename the variable"},
-        },
-        ["="] = {
-            "<cmd>lua vim.lsp.buf.formatting()<cr>", "code formatting"
-        },
-    },
+	{ "<leader>=", "<cmd>lua vim.lsp.buf.formatting()<cr>", desc = "code formatting" },
+
+	{ "<leader>c", group = "code action" },
+	{ "<leader>ca", "<cmd>Lspsaga code_action<cr>", desc = "code action" },
+
+	{ "<leader>r", group = "rename" },
+	{ "<leader>rr", "<cmd>Lspsaga rename ++project<cr>", desc = "rename the variable" },
+
+	{ "<leader>s", group = "show diagnostic" },
+	{ "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics ++unfocus<cr>", desc = "show cursor diagnostics" },
+	{ "<leader>sl", "<cmd>Lspsaga show_line_diagnostics ++unfocus<cr>", desc = "show line diagnostics" },
+	{ "<leader>so", "<cmd>Lspsaga outline<cr>", desc = "outline" },
+
+	{ "gd", "<cmd>Lspsaga goto_definition<cr>", desc = "goto definition" },
+	{ "gh", "<cmd>Lspsaga hover_doc ++quiet<cr>", desc = "peek hover" },
+	{ "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", desc = "get implementation" },
+	{ "gn", "<cmd>Lspsaga diagnostic_jump_next<cr>", desc = "diagnostic goto next" },
+	{ "gp", "<cmd>Lspsaga diagnostic_jump_next<cr>", desc = "diagnostic goto prev" },
+	{ "gr", "<cmd>Lspsaga finder ref<cr>", desc = "peek reference" },
+	{ "gt", "<cmd>Lspsaga goto_type_definition<cr>", desc = "goto type definition" },
 }
-wkmap(keymap_sets.lsp_goto)
+wkadd(keymap_sets.lsp_goto)
 
 ---------------- nvim-tree -------------------------
 pluginKeys.nvimTree = {
