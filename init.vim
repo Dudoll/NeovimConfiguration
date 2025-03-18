@@ -15,10 +15,10 @@ colorscheme catppuccin-mocha " catppuccin-latte, catppuccin-frappe, catppuccin-m
 " plugins
 lua require('plugin-config/nvim-tree')
 lua require('plugin-config/bufferline')
-lua require('plugin-config/nvim-treesitter')
+" lua require('plugin-config/nvim-treesitter')
 lua require('plugin-config/lualine')
 " below is indent-blankine
-lua require('ibl').setup()
+lua require('plugin-config/ibl').setup()
 " lua require('plugin-config/project')
 lua require('plugin-config/toggleterm')
 lua require('plugin-config/gitsigns')
