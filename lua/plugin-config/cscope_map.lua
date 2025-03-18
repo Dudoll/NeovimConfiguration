@@ -12,6 +12,7 @@ local opts = {
     },
     -- cscope executable
     exec = "cscope", -- "cscope" or "gtags-cscope"
+    db_build_cmd = { script = "default", args = { "-bqkv" } },
     -- choose your fav picker
     picker = "telescope", -- "telescope", "fzf-lua" or "quickfix"
     -- size of quickfix window
