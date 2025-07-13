@@ -18,7 +18,7 @@ lua require('plugin-config/bufferline')
 " lua require('plugin-config/nvim-treesitter')
 lua require('plugin-config/lualine')
 " below is indent-blankine
-lua require('plugin-config/ibl').setup()
+lua require('plugin-config/ibl')
 " lua require('plugin-config/project')
 lua require('plugin-config/toggleterm')
 lua require('plugin-config/gitsigns')
