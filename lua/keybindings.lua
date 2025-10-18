@@ -20,7 +20,7 @@ keymap_sets.normal = {
 	{"H", "^", desc = "soft row head"},
 	{"L", "$", desc = "row tail"},
     {"<c-e>", "%", desc = "surround pair"},
-    {"<c-y>", "mZgg9999yy'Z<cmd>delmarks Z<cr>", desc = "copy this file"},
+    -- {"<c-y>", "mZgg9999yy'Z<cmd>delmarks Z<cr>", desc = "copy this file"},
 
     -- bufferline Plugin 标签栏
     {"<a-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "prev bufferline", group = "bufferline"},
@@ -37,6 +37,15 @@ keymap_sets.normal = {
 
     {"<c-d>", "5j", desc = "5 lines down"},
     {"<c-u>", "5k", desc = "5 lines up"},
+
+	-- claude
+    {"<c-y>c", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+    {"<c-y>f", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
+    {"<c-y>r", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
+    {"<c-y>C", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
+    {"<c-y>m", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
+    {"<c-y>b", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
+    {"<c-y>s", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
 }
 wkadd(keymap_sets.normal)
 
