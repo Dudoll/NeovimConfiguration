@@ -115,6 +115,14 @@ return require('packer').startup({
         -- marks
         use "chentoast/marks.nvim"
 
+        -- claude
+        use ({ "coder/claudecode.nvim",
+            requires = { "folke/snacks.nvim" },
+            config = function()
+                require("claudecode").setup()
+            end
+        })
+
         -- 实现光标在移动时的动画
         use { 'gen740/SmoothCursor.nvim',
           config = function()
